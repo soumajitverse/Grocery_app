@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const MainBanner = () => {
   return (
-    <div className='relative mx-6 md:mx-0'>
+    <div className='relative'>
 
       <img src={assets.main_banner_bg} alt="banner"
         className='w-full hidden md:block'
