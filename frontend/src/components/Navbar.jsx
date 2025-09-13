@@ -6,7 +6,15 @@ import { useAppContext } from '../context/AppContext'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
-    const { navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin } = useAppContext()
+    const {
+        navigate,
+        user,
+        setUser,
+        isSeller,
+        setIsSeller,
+        showUserLogin,
+        setShowUserLogin
+    } = useAppContext()
 
     // function to logout
     const handle_logout = async () => {
