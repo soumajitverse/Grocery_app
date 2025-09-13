@@ -17,7 +17,7 @@ const Navbar = () => {
     } = useAppContext()
 
     // function to logout
-    const handle_logout = async () => {
+    const logout = async () => {
         setUser(null)
         navigate('/')
     }
@@ -70,7 +70,7 @@ const Navbar = () => {
                             hover:bg-primary/10 cursor-pointer'>My Orders</li>
 
                                 <li
-                                    onClick={handle_logout}
+                                    onClick={logout}
                                     className='p-1.5 pl-3 
                             hover:bg-primary/10 cursor-pointer'>Logout</li>
 
@@ -117,7 +117,7 @@ const Navbar = () => {
                     (<button
                         onClick={() => {
                             setOpen(false)
-                            handle_logout()
+                            logout()
                         }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
                         Logout
                     </button>)
