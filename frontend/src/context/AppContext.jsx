@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { assets, dummyProducts } from "../assets/assets";
+import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
 
 export const AppContext = createContext()
@@ -15,8 +15,9 @@ export const AppContextProvider = ({ children }) => {
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState({})
     const [searchQuery, setSearchQuery] = useState({})
-    // function to get the dummy products from dummy products array which is present in assets
-    const fetchProducts = async (params) => {
+
+    // fetch all the products
+    const fetchProducts = async () => {
         setProducts(dummyProducts)
     }
 
