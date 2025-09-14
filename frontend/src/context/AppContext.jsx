@@ -14,7 +14,7 @@ export const AppContextProvider = ({ children }) => {
     const [isSeller, setIsSeller] = useState(false)
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState({})
-
+    const [searchQuery, setSearchQuery] = useState({})
     // function to get the dummy products from dummy products array which is present in assets
     const fetchProducts = async (params) => {
         setProducts(dummyProducts)
@@ -73,7 +73,9 @@ export const AppContextProvider = ({ children }) => {
         addToCart,
         updateCartItem,
         removeFromCart,
-        cartItems
+        cartItems,
+        searchQuery,
+        setSearchQuery
     }
 
     return (
