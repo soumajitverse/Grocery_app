@@ -6,12 +6,21 @@ import { useAppContext } from '../context/AppContext';
 const ProductCard = ({ product }) => {
 
     const {
-        curreny,
+       currency,
+        navigate,
+        user,
+        setUser,
+        isSeller,
+        setIsSeller,
+        showUserLogin,
+        setShowUserLogin,
+        products,
         addToCart,
         updateCartItem,
         removeFromCart,
-        navigate,
-        cartItems
+        cartItems,
+        searchQuery,
+        setSearchQuery
     } = useAppContext()
 
     // when product is available then it will only show this component
@@ -37,7 +46,7 @@ const ProductCard = ({ product }) => {
                 </div>
                 <div className="flex items-end justify-between mt-3">
                     <p className="md:text-xl text-base font-medium text-primary">
-                        {curreny}{product.offerPrice}{" "} <span className="text-gray-500/60 md:text-sm text-xs line-through">{curreny}{product.price}</span>
+                        {currency}{product.offerPrice}{" "} <span className="text-gray-500/60 md:text-sm text-xs line-through">{currency}{product.price}</span>
                     </p>
                     <div onClick={(e) => { e.stopPropagation() }}
                         className="text-primary">

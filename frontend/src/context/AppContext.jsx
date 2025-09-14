@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 export const AppContext = createContext()
 
 export const AppContextProvider = ({ children }) => {
-    const curreny = import.meta.env.VITE_CURRENCY; // get the currency symbol from .env file (forntend)
+    const currency = import.meta.env.VITE_CURRENCY; // get the currency symbol from .env file (forntend)
 
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
@@ -62,7 +62,7 @@ export const AppContextProvider = ({ children }) => {
 
 
     const value = {
-        curreny,
+        currency,
         navigate,
         user,
         setUser,

@@ -4,13 +4,21 @@ import { useAppContext } from '../context/AppContext'
 
 const Categories = () => {
     const {
+       currency,
         navigate,
         user,
         setUser,
         isSeller,
         setIsSeller,
         showUserLogin,
-        setShowUserLogin
+        setShowUserLogin,
+        products,
+        addToCart,
+        updateCartItem,
+        removeFromCart,
+        cartItems,
+        searchQuery,
+        setSearchQuery
     } = useAppContext()
     return (
         <div className='mt-16'>

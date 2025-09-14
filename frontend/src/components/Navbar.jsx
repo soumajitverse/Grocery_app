@@ -7,6 +7,7 @@ import { useAppContext } from '../context/AppContext'
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const {
+        currency,
         navigate,
         user,
         setUser,
@@ -14,6 +15,11 @@ const Navbar = () => {
         setIsSeller,
         showUserLogin,
         setShowUserLogin,
+        products,
+        addToCart,
+        updateCartItem,
+        removeFromCart,
+        cartItems,
         searchQuery,
         setSearchQuery
     } = useAppContext()
