@@ -20,6 +20,7 @@ const AllProducts = () => {
     }, [products, searchQuery])
 
     return (
+        <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
         <div className='mt-16 flex flex-col'>
             <div className='flex flex-col items-end w-max'>
                 <p className='text-2xl font-medium uppercase'>All products</p>
@@ -32,6 +33,7 @@ const AllProducts = () => {
                 ))}
             </div>
 
+        </div>
         </div>
     )
 }
