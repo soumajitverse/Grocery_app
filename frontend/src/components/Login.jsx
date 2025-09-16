@@ -1,10 +1,11 @@
 import React from 'react'
-import { useAppContext } from '../context/AppContext';
+import { useState } from 'react';
+import { useAppContext} from '../context/AppContext';
 import toast from 'react-hot-toast';
 
 const Login = () => {
 
-    const {currency,
+    const { currency,
         navigate,
         user,
         setUser,
@@ -18,12 +19,12 @@ const Login = () => {
         removeFromCart,
         cartItems,
         searchQuery,
-        setSearchQuery} = useAppContext()
+        setSearchQuery } = useAppContext()
 
-    const [state, setState] = React.useState("login");
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const [state, setState] = useState("login");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     // function to handle submit
     const onSubmitHandler = async (event) => {

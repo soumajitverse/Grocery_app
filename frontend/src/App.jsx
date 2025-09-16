@@ -12,12 +12,27 @@ import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import AddAddress from './pages/AddAddress'
 import MyOrders from './pages/MyOrders'
+import SellerLogin from './components/seller/SellerLogin'
 
 const App = () => {
 
   const isSellerPath = useLocation().pathname.includes("seller") // if the url path contains the seller then we are in the seller dashboard
 
-  const { showUserLogin } = useAppContext()
+  const { currency,
+        navigate,
+        user,
+        setUser,
+        isSeller,
+        setIsSeller,
+        showUserLogin,
+        setShowUserLogin,
+        products,
+        addToCart,
+        updateCartItem,
+        removeFromCart,
+        cartItems,
+        searchQuery,
+        setSearchQuery } = useAppContext()
 
   return (
     <div className='text-default min-h-screen text-gray-700 bg-white'>
@@ -38,6 +53,7 @@ const App = () => {
           <Route path='/cart' element={<Cart/>} />
           <Route path='/add-address' element={<AddAddress/>} />
           <Route path='/my-orders' element={<MyOrders/>} />
+          <Route path='/seller' element={!isSeller? <SellerLogin/> : null} />
         </Routes>
       </div>
       {/* if it is seller dashboard then footer will not be visible */}
