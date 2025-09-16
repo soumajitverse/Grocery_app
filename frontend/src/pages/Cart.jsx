@@ -49,13 +49,11 @@ const Cart = () => {
 
     }
 
-
     useEffect(() => {
         if (products.length > 0 && cartItems) {
             getCart()
         }
     }, [products, cartItems])
-
 
     return (products.length > 0 && cartItems) ? (
         <div className="flex flex-col md:flex-row mt-16">
