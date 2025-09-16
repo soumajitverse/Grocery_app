@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppContext} from '../../context/AppContext'
+import { useAppContext } from '../../context/AppContext'
 import { useState, useEffect } from 'react'
 
 const SellerLogin = () => {
@@ -21,8 +21,7 @@ const SellerLogin = () => {
         searchQuery,
         setSearchQuery,
         getCartCount,
-        getCartAmount
-    } = useAppContext()
+        getCartAmount } = useAppContext()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -59,7 +58,7 @@ const SellerLogin = () => {
                 </div>
 
                 <button className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 rounded-md cursor-pointer">
-                   Login
+                    Login
                 </button>
 
             </div>

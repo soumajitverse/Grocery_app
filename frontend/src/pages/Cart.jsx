@@ -55,7 +55,7 @@ const Cart = () => {
         }
     }, [products, cartItems])
 
-    return (products.length > 0 && cartItems) ? (
+    return (products.length > 0 && cartItems && cartArray.length) ? (
         <div className="flex flex-col md:flex-row mt-16">
             <div className='flex-1 max-w-4xl'>
                 <h1 className="text-3xl font-medium mb-6">
@@ -202,6 +202,6 @@ const Cart = () => {
                 </button>
             </div>
         </div>
-    ) : null
+    ) : (<h1>Cart is empty</h1>)
 }
 export default Cart
