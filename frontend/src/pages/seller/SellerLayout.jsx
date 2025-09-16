@@ -46,7 +46,7 @@ const SellerLayout = () => {
             </div>
 
             <div className='flex'>
-                <div className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
+                <div className="md:w-64 w-16 border-r h-[95vh] text-base border-gray-300 pt-4 flex flex-col ">
                     {sidebarLinks.map((item) => (
                         // NavLink is like Link, but it knows if the current route is active. "end" is used so that only the exact path "/seller" is active. Without "end", the "/seller" link would also be active for "/seller/product-list" and "/seller/orders"
                         <NavLink to={item.path} key={item.name} end={item.path === "/seller"}
