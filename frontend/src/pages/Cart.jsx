@@ -29,7 +29,9 @@ const Cart = () => {
     const [cartArray, setCartArray] = useState([])
     const [addresses, setAddresses] = useState(dummyAddress[0])
     const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0])
-    const [paymentOptoin, setPaymentOptoin] = useState("COD")
+    const [paymentOption, setPaymentOption] = useState("COD")
+    const [isOpen, setIsOpen] = useState(false);
+
 
     // get the product data and add it to the cartArray
     const getCart = (params) => {
@@ -170,12 +172,43 @@ const Cart = () => {
                         <p className="text-sm font-medium uppercase mt-6">Payment Method</p>
 
                         {/* payment mode selection */}
-                        <select
-                            onChange={(e) => setPaymentOptoin(e.target.value)}
-                            className="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none rounded-xl">
-                            <option value="COD">Cash On Delivery</option>
-                            <option value="Online">Online Payment</option>
-                        </select>
+                        <div className="flex flex-col w-full text-sm relative mt-2">
+                            <button type="button" onClick={() => setIsOpen(!isOpen)}
+                                className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300 cursor-pointer focus:outline-none">
+                                {
+                                    paymentOption === "COD" ? (<span>Cash On Delivery</span>) : (<span>Online Payment</span>)
+                                }
+
+                                <svg className={`w-5 h-5 inline float-right transition-transform duration-200 ${isOpen ? "rotate-0" : "-rotate-90"}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#6B7280" >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            {isOpen && (
+                                <ul className="absolute z-10 top-full left-0 w-full bg-white border border-gray-300 rounded  mt-1 py-2 shadow-sm">
+
+                                    <li key="COD" value="COD" className="px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                                        onClick={() => {
+                                            setPaymentOption("COD")
+                                            setIsOpen(false)
+                                        }}
+                                    >
+                                        Cash On Delivery
+                                    </li>
+
+                                    <li key="Online" value="Online" className="px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
+                                        onClick={() => {
+                                            setPaymentOption("Online")
+                                            setIsOpen(false)
+                                        }}
+                                    >
+                                        Online Payment
+                                    </li>
+
+
+                                </ul>
+                            )}
+                        </div>
                     </div>
 
                     <hr className="border-gray-300" />
@@ -199,7 +232,7 @@ const Cart = () => {
                     <button
                         onClick={placeOrder}
                         className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition rounded-xl">
-                        {paymentOptoin === 'COD' ? "Place Order" : "Proceed to Checkout"}
+                        {paymentOption === 'COD' ? "Place Order" : "Proceed to Checkout"}
                     </button>
                 </div>
             </div>

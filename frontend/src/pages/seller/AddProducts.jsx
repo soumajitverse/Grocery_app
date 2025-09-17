@@ -82,7 +82,7 @@ const AddProduct = () => {
           {/* category drop down menu */}
           <div className="flex flex-col w-full text-sm relative ">
             <button type="button" onClick={() => setIsOpen(!isOpen)}
-              className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300  hover:bg-gray-50 focus:outline-none"
+              className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300   focus:outline-none cursor-pointer"
             >
               {
                 category ? <span>{category}</span> : <span>--Select Category--</span>
@@ -94,7 +94,7 @@ const AddProduct = () => {
             </button>
 
             {isOpen && (
-              <ul className="w-full bg-white border border-gray-300 rounded shadow-md mt-1 py-2">
+              <ul className="absolute z-10 top-full left-0  w-full bg-white border border-gray-300 rounded shadow-sm mt-1 py-2">
 
                 <li value="" className="px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
                   onClick={() => { handleSelect("") }}
