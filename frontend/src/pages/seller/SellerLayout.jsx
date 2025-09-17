@@ -37,7 +37,7 @@ const SellerLayout = () => {
 
 
                 <Link to="/">
-                    <img src={assets.logo} alt="logo" className='cursor-pointer w-34 md:w-38' />
+                    <img src={assets.logo} alt="logo" className='cursor-pointer w-28 md:w-32' />
                 </Link>
 
                 <div className="flex items-center gap-5 text-gray-500">

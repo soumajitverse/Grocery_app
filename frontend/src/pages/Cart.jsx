@@ -205,8 +205,32 @@ const Cart = () => {
             </div>
         </div>
     ) : (
-        <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
-            <h1>Cart is empty</h1>
+
+        // if cart is empty then it will be shown
+        <div className='mt-8 h-svh px-6 md:px-16 lg:px-24 xl:px-32 flex flex-col justify-center items-center gap-2'>
+
+            {/* empty cart icon */}
+            <img src={assets.empty_cart_image} alt="cart icon"
+                className='w-30' />
+
+            <div className='flex flex-col justify-center items-center'>
+                <div className='text-xl font-bold'>Oops, your cart looks empty</div>
+                <div>
+                    Discover fresh deals and add your favorites today.
+                </div>
+            </div>
+
+            <button
+                onClick={() => {
+                    navigate('/products') // it will redirect you to all products page
+                    scrollTo(0, 0)
+                }}
+                className="group cursor-pointer flex items-center mt-6 gap-2 text-primary font-medium">
+                <img
+                    className='group-hover:-translate-x-1 transition'
+                    src={assets.arrow_right_icon_colored} alt="arrow" />
+                Continue Shopping
+            </button>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { useAppContext } from '../context/AppContext';
 const ProductCard = ({ product }) => {
 
     const {
-       currency,
+        currency,
         navigate,
         user,
         setUser,
