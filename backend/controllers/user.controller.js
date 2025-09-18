@@ -1,3 +1,4 @@
+import generateToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
 
@@ -35,9 +36,34 @@ export const register = async (req, res) => {
             hashedPassword
         })
 
-       
+        // jwt Token Created And Stored The Value into Token
+        let token;
+        try {
+            token = generateToken(user_id)
+        } catch (error) {
+            console.log(error)
+        }
+
+        // Cookie Creation
+        res.cookie('token', token, {
+            httpOnly: true, // Prevent JavaScript to access cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookie in the production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // CSRF protection
+            maxAge: 7 * 24 * 60 * 60 * 1000 // this is cookie expiration time and this is always be written in milisecond. 
+        })
+
+        return res.status(201).json({
+            success: true,
+            user: {
+                email,
+                name
+            }
+        })
 
     } catch (error) {
-
+        res.status(500).json({
+            message: "internal server error",
+            error
+        })
     }
 }
