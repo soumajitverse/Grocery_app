@@ -30,11 +30,13 @@ const Cart = () => {
     const [addresses, setAddresses] = useState(dummyAddress[0])
     const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0])
     const [paymentOption, setPaymentOption] = useState("COD")
-    const [isOpen, setIsOpen] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false); // for drop down menu for payment mode
+    const [isOpenQty, setIsOpenQty] = useState(null); // for product Qty selection
 
 
     // get the product data and add it to the cartArray
-    const getCart = (params) => {
+    const getCart = () => {
         let tempArray = []
         for (const key in cartItems) {
             const product = products.find((item) => item._id === key) // find the products which has same the id as present in cartItems object and add it to product
@@ -96,15 +98,42 @@ const Cart = () => {
                                         {/* product quantity */}
                                         <div className='flex items-center'>
                                             <p>Qty:</p>
-                                            <select
-                                                onChange={
-                                                    (e) => updateCartItem(product._id, Number(e.target.value))}
-                                                value={cartItems[product._id]}
-                                                className='outline-none'>
-                                                {Array(cartItems[product._id] > 9 ? cartItems[product._id] : 9).fill('').map((_, index) => (
-                                                    <option key={index} value={index + 1}>{index + 1}</option>
-                                                ))}
-                                            </select>
+
+                                            {/* drop down for product Qty selection */}
+                                            {/* new */}
+                                            <div className="flex flex-col relative text-sm w-15">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsOpenQty(isOpenQty === product._id ? null : product._id)}
+                                                    className="group w-full text-left mt-0.5 px-1 py-1  bg-white text-base  cursor-pointer flex items-center"
+                                                >
+                                                    <span>{cartItems[product._id]}</span>
+
+                                                    <img src={assets.chevron} alt="chevron" className={`ml-1.5 w-2 opacity-50 ${isOpenQty === product._id ? "rotate-90" : "rotate-0"} `} />
+
+
+                                                </button>
+
+                                                {/* Dropdown menu → only visible for the product whose _id === isOpenQty */}
+                                                {isOpenQty === product._id && (
+                                                    <ul className="absolute z-10 top-full left-0 w-fit bg-white border border-gray-300 rounded shadow-sm -mt-1 py-1">
+                                                        {Array(cartItems[product._id] > 9 ? cartItems[product._id] : 9)
+                                                            .fill('')
+                                                            .map((_, index) => (
+                                                                <li
+                                                                    key={index}
+                                                                    className="px-3 py-1 hover:bg-primary hover:text-white cursor-pointer"
+                                                                    onClick={() => {
+                                                                        updateCartItem(product._id, index + 1);
+                                                                        setIsOpenQty(null);
+                                                                    }}
+                                                                >
+                                                                    {index + 1}
+                                                                </li>
+                                                            ))}
+                                                    </ul>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +167,7 @@ const Cart = () => {
                 </div>
 
                 {/* right side card for order summary and others */}
-                <div className="max-w-[360px] w-full bg-gray-100/40 p-5 max-md:mt-16 border border-gray-300/70 rounded-xl">
+                <div className="max-w-[360px] w-full bg-gray-100/40 p-5 max-md:mt-16 border border-gray-300/70 rounded-xl sm:max-h-fit">
                     <h2 className="text-xl md:text-xl font-medium">Order Summary</h2>
                     <hr className="border-gray-300 my-5" />
 
@@ -174,14 +203,13 @@ const Cart = () => {
                         {/* payment mode selection */}
                         <div className="flex flex-col w-full text-sm relative mt-2">
                             <button type="button" onClick={() => setIsOpen(!isOpen)}
-                                className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300 cursor-pointer focus:outline-none">
+                                className=" w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300 cursor-pointer flex justify-between ">
                                 {
                                     paymentOption === "COD" ? (<span>Cash On Delivery</span>) : (<span>Online Payment</span>)
                                 }
+                              
+                                <img src={assets.chevron} alt="chevron" className={` w-3 opacity-50 ${isOpen ? "rotate-90" : "rotate-0"} `} />
 
-                                <svg className={`w-5 h-5 inline float-right transition-transform duration-200 ${isOpen ? "rotate-0" : "-rotate-90"}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#6B7280" >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
                             </button>
 
                             {isOpen && (

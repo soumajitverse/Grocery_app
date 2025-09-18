@@ -82,15 +82,13 @@ const AddProduct = () => {
           {/* category drop down menu */}
           <div className="flex flex-col w-full text-sm relative ">
             <button type="button" onClick={() => setIsOpen(!isOpen)}
-              className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300   focus:outline-none cursor-pointer"
+              className="w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300   focus:outline-none cursor-pointer flex justify-between"
             >
               {
                 category ? <span>{category}</span> : <span>--Select Category--</span>
               }
+              <img src={assets.chevron} alt="chevron" className={` w-3 opacity-50 ${isOpen ? "rotate-90" : "rotate-0"} `} />
 
-              <svg className={`w-5 h-5 inline float-right transition-transform duration-200 ${isOpen ? "rotate-0" : "-rotate-90"}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#6B7280" >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
             </button>
 
             {isOpen && (
