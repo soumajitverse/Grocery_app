@@ -6,7 +6,7 @@ const userRouter = express.Router()
 
 userRouter.post('/register', register)
 userRouter.post('/login', login)
-userRouter.post('/is-auth',userAuth , isAuth) // userAuth will be executed before the isAuth controller
-userRouter.post('/logout',userAuth , logout) // userAuth will be executed before the logout controller
+userRouter.get('/is-auth',userAuth , isAuth) // userAuth will be executed before the isAuth controller
+userRouter.get('/logout',userAuth , logout) // userAuth will be executed before the logout controller
 
 export default userRouter
