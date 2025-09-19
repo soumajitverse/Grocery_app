@@ -47,3 +47,44 @@ export const sellerLogin = async (req, res) => {
         })
     }
 }
+
+
+// Check isAuth : api/seller/is-auth
+// it will check user is authenticated or not
+export const isSellerAuth = async (req, res) => {
+    try {
+
+        return res.status(200).json({
+            success: true
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+
+// Logout Seller : api/seller/logout
+export const sellerLogout = async (req, res) => {
+    try {
+        //clearing the cookie will delete the token so that user will be automatically logout
+        res.clearCookie('sellerToken', {
+            httpOnly: true, // Prevent JavaScript to access cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookie in the production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // CSRF protection
+        })
+
+        res.status(200).json({
+            success: true,
+            message: "Logged Out successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
