@@ -136,3 +136,13 @@ export const login = async (req, res) => {
 }
 
 
+// Check Auth (it will check user is authenticated or not) : api/user/is-auth
+export const isAuth = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
+
