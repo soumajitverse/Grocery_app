@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+import userRouter from './routes/user.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -22,6 +23,8 @@ app.use(cors({
 app.get('/',(req,res)=>{
     res.send("Api is Working")
 })
+
+app.use('/api/user', userRouter)
 
 app.listen(port, (params) => {
   connectDB()
