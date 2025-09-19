@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 // Middleware to authenticate the user using JWT
 const userAuth = async (req, res, next) => {
     try {
-        const { token } = req.cookies // Extract token from cookies (frontend must send token as a cookie)
+        const { token } = req.cookies // Extract token from cookies 
 
         // If no token is found → user is not logged in / unauthorized
         if (!token) {
