@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import userRouter from './routes/user.route.js'
+import sellerRouter from './routes/seller.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -20,11 +21,10 @@ app.use(cors({
   Credentials:true
 }))
 
-app.get('/',(req,res)=>{
-    res.send("Api is Working")
-})
 
+app.get('/',(req,res)=>res.send("Api is Working"))
 app.use('/api/user', userRouter)
+app.use('/api/seller', sellerRouter)
 
 app.listen(port, () => {
   connectDB()

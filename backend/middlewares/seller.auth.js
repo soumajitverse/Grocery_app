@@ -17,7 +17,7 @@ const sellerAuth = async (req, res, next) => {
         const tokenDecode = jwt.verify(sellerToken, process.env.JWT_SECRET)
 
         // check decoded email value and the seller email(present in .env) is same or not
-        if (tokenDecode.email == process.env.SELLER_EMAIL) {
+        if (tokenDecode.id == process.env.SELLER_EMAIL) {
             next() // pass control to the next middleware/controller
         }
         else {

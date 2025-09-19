@@ -49,8 +49,7 @@ export const sellerLogin = async (req, res) => {
 }
 
 
-// Check isAuth : api/seller/is-auth
-// it will check user is authenticated or not
+// Seller isAuth : api/seller/is-auth
 export const isSellerAuth = async (req, res) => {
     try {
 
@@ -76,7 +75,7 @@ export const sellerLogout = async (req, res) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // CSRF protection
         })
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "Logged Out successfully"
         })
