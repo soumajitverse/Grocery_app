@@ -16,9 +16,9 @@ const userAuth = async (req, res, next) => {
         // Verify and decode the token using JWT_SECRET
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET)
 
-        // If token is valid → store userId inside request body
-        // (so that controllers can access req.body.userId later)
-        if (tokenDecode) {
+        // If decoding is successful → attach userId to request body
+        // (controllers can later access req.body.userId)
+        if (tokenDecode.id) {
             req.body.userId = tokenDecode.id
         }
         else {
