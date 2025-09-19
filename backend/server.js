@@ -26,7 +26,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/user', userRouter)
 
-app.listen(port, (params) => {
+app.listen(port, () => {
   connectDB()
   console.log(`server is running on http://localhost:${port}`)
 })

@@ -33,13 +33,13 @@ export const register = async (req, res) => {
         const user = await User.create({
             name,
             email,
-            hashedPassword
+            password: hashedPassword
         })
 
         // jwt Token Created And Stored The Value into Token
         let token;
         try {
-            token = generateToken(user_id)
+            token = generateToken(user._id)
         } catch (error) {
             console.log(error)
         }
