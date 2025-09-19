@@ -67,3 +67,31 @@ export const register = async (req, res) => {
         })
     }
 }
+
+
+// Login User : api/user/login
+export const login = async (res, req) => {
+  try {
+    const {email, password} = req.body
+
+    // to check all the details are given or not
+    if(!email || !password){
+        return res.status(400).json({
+            success:false,
+            message:"Email and password are required to login"
+        })
+    }
+
+    // checking user is already present or not
+    let existingUser = await User.findOne({email})
+    if(!existingUser){
+        return res.status(400).json({
+            success:false,
+            message:"Invalid email or password"
+        })
+    }
+
+  } catch (error) {
+    
+  }
+}
