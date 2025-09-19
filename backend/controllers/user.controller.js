@@ -147,7 +147,7 @@ export const isAuth = async (req, res) => {
         const user = await User.findById(userId).select("-password")
 
         return res.status(200).json({
-            status: true,
+            success: true,
             user
         })
     } catch (error) {
@@ -161,5 +161,23 @@ export const isAuth = async (req, res) => {
 
 // Logout User : api/user/logout
 export const logout = async (req, res) => {
+    try {
+        //clearing the cookie will delete the token so that user will be automatically logout
+        res.clearCookie('token', {
+            httpOnly: true, // Prevent JavaScript to access cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookie in the production
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // CSRF protection
+        })
 
+        res.status(200).json({
+            success: true,
+            message: "Logged Out successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
