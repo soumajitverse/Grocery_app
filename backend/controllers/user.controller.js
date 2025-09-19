@@ -63,15 +63,14 @@ export const register = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "internal server error",
-            error
+            message: error.message
         })
     }
 }
 
 
 // Login User : api/user/login
-export const login = async (res, req) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body
 
@@ -129,10 +128,9 @@ export const login = async (res, req) => {
         })
 
     } catch (error) {
-        res.status(500).json({
+       return res.status(500).json({
             success: false,
-            message: "internal server error",
-            error
+            message: error.message
         })
     }
 }
