@@ -1,9 +1,12 @@
 import express from "express";
-import { login, register } from "../controllers/user.controller.js";
+import { isAuth, login, logout, register } from "../controllers/user.controller.js";
+import userAuth from "../middlewares/user.auth.js";
 
 const userRouter = express.Router() 
 
 userRouter.post('/register', register)
 userRouter.post('/login', login)
+userRouter.post('/is-auth',userAuth , isAuth) // userAuth will be executed before the isAuth controller
+userRouter.post('/logout',userAuth , logout) // userAuth will be executed before the logout controller
 
 export default userRouter
