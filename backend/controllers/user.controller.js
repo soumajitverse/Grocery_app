@@ -136,13 +136,26 @@ export const login = async (req, res) => {
 }
 
 
-// Check Auth (it will check user is authenticated or not) : api/user/is-auth
+// Check Auth : api/user/is-auth
+// it will check user is authenticated or not
 export const isAuth = async (req, res) => {
-  try {
-    
-  } catch (error) {
-    
-  }
+    try {
+        const { userId } = req.body
+
+        // Find the user in the database by their ID
+        // `.select("-password")` excludes the password field from the response for security
+        const user = await User.findById(userId).select("-password")
+
+        return res.status(200).json({
+            status: true,
+            user
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 
