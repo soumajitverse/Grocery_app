@@ -7,6 +7,7 @@ import userRouter from './routes/user.route.js'
 import sellerRouter from './routes/seller.route.js'
 import connectCloudinary from './config/cloudinary.js'
 import productRouter from './routes/product.route.js'
+import addressRouter from './routes/address.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -35,6 +36,7 @@ app.use('/api/user', userRouter)
 app.use('/api/seller', sellerRouter)
 app.use('/api/product', productRouter)
 app.use('/api/cart', productRouter)
+app.use('/api/address', addressRouter)
 
 app.listen(port, () => {
   connections()
