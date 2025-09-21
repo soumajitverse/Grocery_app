@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary'
+import Product from '../models/product.model.js'
 
 // Add Product : /api/product/add
 export const addProduct = async (req, res) => {
@@ -8,7 +9,7 @@ export const addProduct = async (req, res) => {
         // req.files contains all the images uploaded by user
         const images = req.files
 
-         // upload all the images to cloudinary and return all the path urls of uploaded cloudinary images and store it in array format in imagesUrl
+        // upload all the images to cloudinary and return all the path urls of uploaded cloudinary images and store it in array format in imagesUrl
         let imagesUrl = await Promise.all(
             images.map(async (item) => {
                 let result = await cloudinary.uploader.upload(item.path,
@@ -17,9 +18,18 @@ export const addProduct = async (req, res) => {
             })
         )
 
-        
-    } catch (error) {
+        await Product.create({ ...productData, image: imagesUrl }) // create a document in products collection using productData and imgesUrl in product.model.js format 
 
+        return res.status(201).json({
+            success: true,
+            message: "Product added"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
     }
 }
 
