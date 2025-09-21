@@ -51,11 +51,21 @@ export const productList = async (req, res) => {
 
 // Get Single Product : /api/product/id
 export const productById = async (req, res) => {
-try {
-    
-} catch (error) {
-    
-}
+    try {
+        const { id } = req.body // extract id from for req.body
+        const product = await Product.find(id) // return  the product whoose id match with it
+
+        return res.status(200).json({
+            success: true,
+            product
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 // Change Product inStock : /api/product/stock
