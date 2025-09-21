@@ -1,6 +1,6 @@
 import express from "express";
-import { updateCart } from "../controllers/cart.controller";
-import userAuth from "../middlewares/user.auth";
+import { updateCart } from "../controllers/cart.controller.js";
+import userAuth from "../middlewares/user.auth.js";
 
 const cartRouter = express.Router()
 
