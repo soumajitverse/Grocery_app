@@ -26,7 +26,7 @@ export const addProduct = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: error.message
         })
@@ -35,11 +35,18 @@ export const addProduct = async (req, res) => {
 
 // Get Product : /api/product/list
 export const productList = async (req, res) => {
-try {
-    
-} catch (error) {
-    
-}
+    try {
+        const products = await Product.find({}) // return all the products
+        return res.status(200).json({
+            success: true,
+            products
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 // Get Single Product : /api/product/id
