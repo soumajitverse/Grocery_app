@@ -37,6 +37,6 @@ const productSechma = new mongoose.Schema({
     })
 
 // Reuse the model if it already exists (prevents OverwriteModelError in hot reload)
-const Product = mongoose.models.Product || mongoose.model('Product', userSchema);
+const Product = mongoose.models.Product || mongoose.model('Product', productSechma);
 
 export default Product;

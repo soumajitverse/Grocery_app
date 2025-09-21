@@ -6,6 +6,7 @@ import connectDB from './config/db.js'
 import userRouter from './routes/user.route.js'
 import sellerRouter from './routes/seller.route.js'
 import connectCloudinary from './config/cloudinary.js'
+import productRouter from './routes/product.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -13,7 +14,7 @@ const app = express()
 
 const connections = async () => {
   await connectDB()
-  await connectCloudinary()
+  connectCloudinary()
 }
 
 
@@ -32,9 +33,10 @@ app.use(cors({
 app.get('/', (req, res) => res.send("Api is Working"))
 app.use('/api/user', userRouter)
 app.use('/api/seller', sellerRouter)
+app.use('/api/product', productRouter)
 
 app.listen(port, () => {
-connections()
+  connections()
   console.log(`server is running on http://localhost:${port}`)
 })
 
