@@ -34,6 +34,7 @@ app.get('/', (req, res) => res.send("Api is Working"))
 app.use('/api/user', userRouter)
 app.use('/api/seller', sellerRouter)
 app.use('/api/product', productRouter)
+app.use('/api/cart', productRouter)
 
 app.listen(port, () => {
   connections()
