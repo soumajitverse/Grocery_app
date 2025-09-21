@@ -70,6 +70,10 @@ export const productById = async (req, res) => {
 
 // Change Product inStock : /api/product/stock
 export const changeStock = async (req, res) => {
-
+try {
+    
+} catch (error) {
+    
+}
 }
 
