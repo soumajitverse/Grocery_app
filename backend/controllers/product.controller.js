@@ -53,7 +53,7 @@ export const productList = async (req, res) => {
 export const productById = async (req, res) => {
     try {
         const { id } = req.body // extract id from for req.body
-        const product = await Product.find(id) // return  the product whoose id match with it
+        const product = await Product.findById(id) // return  the product whoose id match with it
 
         return res.status(200).json({
             success: true,
