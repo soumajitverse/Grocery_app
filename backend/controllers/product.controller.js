@@ -35,7 +35,11 @@ export const addProduct = async (req, res) => {
 
 // Get Product : /api/product/list
 export const productList = async (req, res) => {
-
+try {
+    
+} catch (error) {
+    
+}
 }
 
 // Get Single Product : /api/product/id
