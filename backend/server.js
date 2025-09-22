@@ -5,18 +5,12 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import userRouter from './routes/user.route.js'
 import sellerRouter from './routes/seller.route.js'
-import connectCloudinary from './config/cloudinary.js'
 import productRouter from './routes/product.route.js'
 import addressRouter from './routes/address.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
 const app = express()
-
-const connections = async () => {
-  await connectDB()
-  connectCloudinary()
-}
 
 
 // Allow multiple origins
@@ -39,7 +33,7 @@ app.use('/api/cart', productRouter)
 app.use('/api/address', addressRouter)
 
 app.listen(port, () => {
-  connections()
+  connectDB()
   console.log(`server is running on http://localhost:${port}`)
 })
 
