@@ -13,15 +13,22 @@ export const placeOrderCOD = async (req, res) => {
             })
         }
 
-        // Calculate Amount Using Items
-        let amount = await items.reduce(async (acc, item) => {
-            const product = await Product.findById(item.product);
-            return (await acc) + product.offerPrice * item.quantity;
-        }, 0) // here 0 is the initial acc value
+        // Calculate Amount Using Items 
 
+        // it stores all the amounts for each products in an array
+        let individualAmounts = await Promise.all(
+            items.map(async (item) => {
+                const product = await Product.findById(item.product) // find the product document from products collection by id
+                return (product.offerPrice * item.quantity) // it return the amount for each products i.e., product_price * product_quantity
+            })
+        )
 
-        // Add tax Charge (2%)
+        // it calculates the total amount for all the products
+        let amount = individualAmounts.reduce((acc, curr) => (acc + curr), 0) // add 0 intial value to acc bcz if the array is empty then it will throw error
+
+        // Add tax Charge (2%) on total
         amount += Math.floor(amount * 0.02)
+
 
         await Order.create({
             userId,
@@ -45,21 +52,3 @@ export const placeOrderCOD = async (req, res) => {
 }
 
 
-// Get Orders by User ID : /api/order/user
-export const getUserOrders = async (req, res) => {
-    try {
-        const { userId } = req.body;
-        const orders = await Order.find({
-            userId,
-            $or: [{ paymentType: "COD" }, { isPaid: true }]
-        }).populate("items.product address").sort({ createdAt: -1 });
-        res.status(200).json({
-             success: true, orders 
-            });
-    } catch (error) {
-       return res.status(500).json({
-            success: false,
-            message: error.message
-        })
-    }
-}
