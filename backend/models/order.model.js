@@ -3,12 +3,14 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
     userId: {
         type: String,
+        // type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User' // take refrence from User model
     },
     items: [{
         product: {
             type: String,
+            // type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: 'Product' // take refrence from Product model
         },
@@ -23,6 +25,7 @@ const orderSchema = new mongoose.Schema({
     },
     address: {
         type: String,
+        // type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Address' // take refrence from Address model
     },
