@@ -15,14 +15,14 @@ const app = express()
 
 
 // Allow multiple origins
-const allowedOrigins = ["http://localhost:5173"]
+const allowedOrigin = "http://localhost:5173"
 
 // Middleware configuration
 app.use(express.json())
 app.use(cookieParser()) // it helps to extract token from req.cookies
 app.use(cors({
-  origin: allowedOrigins,
-  Credentials: true
+  origin: allowedOrigin,
+  credentials: true
 }))
 
 
