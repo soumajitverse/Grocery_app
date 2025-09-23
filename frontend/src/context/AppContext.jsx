@@ -38,7 +38,6 @@ export const AppContextProvider = ({ children }) => {
                 setIsSeller(true)
             }
         } catch (error) {
-            console.log("i am false")
             setIsSeller(false)
         }
 
