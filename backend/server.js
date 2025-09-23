@@ -7,6 +7,7 @@ import userRouter from './routes/user.route.js'
 import sellerRouter from './routes/seller.route.js'
 import productRouter from './routes/product.route.js'
 import addressRouter from './routes/address.route.js'
+import orderRouter from './routes/order.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -31,7 +32,7 @@ app.use('/api/seller', sellerRouter)
 app.use('/api/product', productRouter)
 app.use('/api/cart', productRouter)
 app.use('/api/address', addressRouter)
-
+app.use('/api/order', orderRouter)
 app.listen(port, () => {
   connectDB()
   console.log(`server is running on http://localhost:${port}`)
