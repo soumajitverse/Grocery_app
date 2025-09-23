@@ -4,6 +4,17 @@ import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
 import axios from "axios"
 
+// Set a global base URL for all axios requests.
+// This takes the value from the frontend .env file (VITE_BACKEND_URL),
+// so you don't have to repeat the full backend URL in every request.
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
+
+
+// Allow axios to include cookies (e.g., session tokens) in every request.
+// Useful for authentication when the backend relies on cookies for user sessions.
+axios.defaults.withCredentials = true;
+
+
 export const AppContext = createContext()
 
 export const AppContextProvider = ({ children }) => {
