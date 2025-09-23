@@ -35,14 +35,13 @@ const SellerLogin = () => {
             event.preventDefault()
             const { data } = await axios.post('/api/seller/login',
                 { email, password },
-                { withCredentials: true }
+                { withCredentials: true } // ensures cookies are sent + saved
             )
 
             if (data.success) {
                 setIsSeller(true)
                 toast.success(data.message)
             }
-    
 
         } catch (error) {
             const message = error.response?.data?.message || "Something went wrong";

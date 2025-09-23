@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(cookieParser()) // it helps to extract token from req.cookies
 app.use(cors({
   origin: allowedOrigin,
-  credentials: true
+  credentials: true // here means backend allows cookies to be sent.
 }))
 
 
