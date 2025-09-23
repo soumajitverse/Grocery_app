@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { assets, categories } from '../../assets/assets'
+import { useAppContext } from '../../context/AppContext'
+import toast from 'react-hot-toast'
+
 
 const AddProduct = () => {
 
@@ -12,6 +15,25 @@ const AddProduct = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const { currency,
+    navigate,
+    user,
+    setUser,
+    isSeller,
+    setIsSeller,
+    showUserLogin,
+    setShowUserLogin,
+    products,
+    addToCart,
+    updateCartItem,
+    removeFromCart,
+    cartItems,
+    searchQuery,
+    setSearchQuery,
+    getCartCount,
+    getCartAmount,
+    axios } = useAppContext()
+
   const handleSelect = (e) => {
     setCategory(e)
     setIsOpen(false);
@@ -20,8 +42,40 @@ const AddProduct = () => {
 
   // function to handle submit
   const onSubmitHandler = async (event) => {
-    event.preventDefault()
+    try {
+      event.preventDefault()
+      const productData = {
+        name,
+        category,
+        price,
+        offerPrice,
+        description: description.split('\n')
+      }
 
+      const formData = new FormData()
+
+      formData.append("productData", JSON.stringify(productData)) // convert productData from json to string
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append('images', files[i])
+
+      }
+
+      const { data } = await axios.post('/api/product/add', formData)
+
+      if (data.success) {
+        toast.success(data.message)
+        setName('')
+        setFiles([])
+        setDescription('')
+        setCategory('')
+        setPrice('')
+        setOfferPrice('')
+      }
+
+    } catch (error) {
+      console.log(error.response.data.message)
+    }
   }
 
 
@@ -107,18 +161,6 @@ const AddProduct = () => {
               </ul>
             )}
           </div>
-
-          {/* old optins */}
-          {/* <select
-            onChange={(e) => setCategory(e.target.value)}
-            value={category}
-            id="category" className="outline-none md:py-2.5 py-2 px-3 rounded-xl border border-gray-500/40">
-            <option value="">--- Select Category ---</option>
-            {categories.map((item, index) => (
-              <option key={index} value={item.path}>{item.path}</option>
-            ))}
-          </select> */}
-
         </div>
 
 
