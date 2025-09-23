@@ -17,12 +17,12 @@ const uploadOnCloudinary = async (imagePath) => {
         }
 
         const result = await cloudinary.uploader.upload(imagePath)
-        console.log(result)
+        // console.log(result)
         fs.unlinkSync(imagePath) // for deleting image
         return result.secure_url;
     } catch (error) {
         fs.unlinkSync(imagePath) // for deleting image
-        console.error(error);
+        console.log(error);
     }
 
 }

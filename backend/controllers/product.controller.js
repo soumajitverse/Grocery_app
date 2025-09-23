@@ -9,18 +9,18 @@ export const addProduct = async (req, res) => {
 
 
         // UPLOADING IMAGES TO CLOUDINARY
-        let imagesUrl, images
-        if (req.files) {
-            images = req.files // req.files is for multiple images
+        let imagesUrl = [] // in this array, store all the urls of images that were uploaded to cloudinary 
+        let images = req.files // req.files is for multiple images
 
-            // storing all the urls of images that were uploaded to cloudinary
-            imagesUrl = await Promise.all(
+        if (images) {
+            await Promise.all(
                 images.map(async (image) => {
-                    await uploadOnCloudinary(image)
+                    let link = await uploadOnCloudinary(image.path)
+                    console.log(link)
+                    imagesUrl.push(link) // adding link in the array
                 })
             )
         }
-
 
         await Product.create({ ...productData, image: imagesUrl }) // create a document in products collection using productData and imgesUrl in product.model.js format 
 
@@ -30,6 +30,7 @@ export const addProduct = async (req, res) => {
         })
 
     } catch (error) {
+
         return res.status(500).json({
             success: false,
             message: error.message

@@ -72,8 +72,8 @@ const AddProduct = () => {
         setPrice('')
         setOfferPrice('')
       }
-
-    } catch (error) {
+      
+    } catch (error){
       console.log(error.response.data.message)
     }
   }
