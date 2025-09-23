@@ -28,8 +28,12 @@ const SellerLogin = () => {
 
     // fucntion to handle the submit
     const onSubmitHandler = async (event) => {
-        event.preventDefault();
-        setIsSeller(true)
+     try {
+        event.preventDefault()
+        
+     } catch (error) {
+        
+     }
     }
 
     useEffect(() => {
