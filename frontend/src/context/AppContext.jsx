@@ -29,6 +29,22 @@ export const AppContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState({})
     const [searchQuery, setSearchQuery] = useState({})
 
+
+    // Fetch Seller Status (Check Login or not)
+    const fetchSellerStatus = async () => {
+        try {
+            const { data } = await axios.get('api/seller/is-auth')
+            if (data.success) {
+                setIsSeller(true)
+            }
+        } catch (error) {
+            console.log("i am false")
+            setIsSeller(false)
+        }
+
+    }
+
+
     // fetch all the products
     const fetchProducts = async () => {
         setProducts(dummyProducts)
@@ -88,7 +104,9 @@ export const AppContextProvider = ({ children }) => {
         }
         return Math.floor(totalAmount * 100) / 100
     }
+
     useEffect(() => {
+        fetchSellerStatus() // function to check seller is logged in or not
         fetchProducts()
     }, [])
 
