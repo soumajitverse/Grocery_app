@@ -1,6 +1,8 @@
 import React from 'react'
 import { useAppContext } from '../../context/AppContext'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const SellerLogin = () => {
 
@@ -21,19 +23,31 @@ const SellerLogin = () => {
         searchQuery,
         setSearchQuery,
         getCartCount,
-        getCartAmount } = useAppContext()
+        getCartAmount,
+        axios } = useAppContext()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     // fucntion to handle the submit
     const onSubmitHandler = async (event) => {
-     try {
-        event.preventDefault()
-        
-     } catch (error) {
-        
-     }
+        try {
+            event.preventDefault()
+            const { data } = await axios.post('/api/seller/login',
+                { email, password },
+                { withCredentials: true }
+            )
+
+            if (data.success) {
+                setIsSeller(true)
+                toast.success(data.message)
+            }
+    
+
+        } catch (error) {
+            const message = error.response?.data?.message || "Something went wrong";
+            toast.error(message);
+        }
     }
 
     useEffect(() => {
@@ -43,7 +57,7 @@ const SellerLogin = () => {
     }, [isSeller])
 
     return !isSeller && (
-     
+
         <form onSubmit={onSubmitHandler} className='min-h-screen flex items-center text-sm text-gray-600'>
             <div className='flex flex-col gap-5 m-auto items-start p-8 py-12 min-w-80 sm:min-w-88 rounded-lg shadow-xl border border-gray-200'>
 
@@ -67,7 +81,7 @@ const SellerLogin = () => {
             </div>
 
         </form >
-  
+
     )
 }
 
