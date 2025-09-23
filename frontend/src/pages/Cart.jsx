@@ -277,7 +277,7 @@ const Cart = () => {
             <div className='flex flex-col justify-center items-center'>
                 <div className='text-xl font-bold'>Oops, your cart looks empty</div>
                 <div>
-                    Discover fresh deals and add your favorites today.
+                   Start fresh — explore and add your favorites.
                 </div>
             </div>
 
