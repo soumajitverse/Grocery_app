@@ -43,7 +43,7 @@ export const AppContextProvider = ({ children }) => {
 
     }
 
-// Fetch User Status (Check Login or not) and Cart Items
+    // Fetch User Status (Check Login or not) and Cart Items
     const fetchUserStatus = async () => {
         try {
             const { data } = await axios.get('api/user/is-auth')
@@ -129,9 +129,28 @@ export const AppContextProvider = ({ children }) => {
         fetchSellerStatus() // function to check seller is logged in or not
         fetchUserStatus() // function to check user is logged in or not and update cart if logged in
         fetchProducts()
-   
     }, [])
 
+    
+    // Update DB Cart Items
+    const updateCart = async (params) => {
+        try {
+            console.log(req.body)
+            const { data } = await axios.post('/api/cart/update', { cartItems })
+            if (!data.success) {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(user)
+            toast.error(error.message)
+        }
+    }
+    useEffect(() => {
+        if (user) {
+            updateCart()
+        }
+
+    }, [cartItems])
 
     const value = {
         currency,
