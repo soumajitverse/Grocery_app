@@ -27,6 +27,8 @@ const Navbar = () => {
 
     // function to logout
     const logout = async () => {
+
+        
         setUser(null)
         navigate('/')
     }
