@@ -48,7 +48,7 @@ const Login = () => {
                 setShowUserLogin(false)
             }
         } catch (error) {
-            toast.error(error.response.data.message)
+            toast.error('Something went wrong!')
         }
     }
 

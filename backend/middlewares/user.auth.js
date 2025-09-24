@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 const userAuth = async (req, res, next) => {
     try {
         const { token } = req.cookies // Extract token from cookies 
-
+        
         // If no token is found -> user is not logged in / unauthorized
         if (!token) {
             return res.status(401).json({
@@ -24,7 +24,6 @@ const userAuth = async (req, res, next) => {
         }
         else {
             // If decoding failed -> invalid token
-            console.log("mother fucker")
             return res.status(401).json({
                 success: false,
                 message: "Not Authorised"

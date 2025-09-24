@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
@@ -22,23 +23,33 @@ const Navbar = () => {
         cartItems,
         searchQuery,
         setSearchQuery,
-        getCartCount
+        getCartCount,
+        getCartAmount,
+        axios,
+        fetchProducts
     } = useAppContext()
 
     // function to logout
     const logout = async () => {
-
-        
-        setUser(null)
-        navigate('/')
+        try {
+            const { data } = await axios.get('/api/user/logout')
+            if (data.success) {
+                toast.success(data.message)
+                setUser(null)
+                navigate('/')
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Something went wrong!')
+        }
     }
 
     useEffect(() => {
-      if(searchQuery.length >0){
-        navigate("/products")
-      }
+        if (searchQuery.length > 0) {
+            navigate("/products")
+        }
     }, [searchQuery])
-    
+
 
     return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative z-50 transition-all">
@@ -57,10 +68,10 @@ const Navbar = () => {
                 {/* search box */}
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     <input
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value)
-                    }}
-                    className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products"/>
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value)
+                        }}
+                        className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
                     <img src={assets.search_icon} alt="search" className='w-4 h-4' />
                 </div>
 
