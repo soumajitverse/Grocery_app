@@ -20,7 +20,7 @@ const userAuth = async (req, res, next) => {
         // (controllers can later access req.body.userId)
         //    let ID = tokenDecode.id
         if (tokenDecode.id) {
-            req.body = { userId: tokenDecode.id }
+            req.body = {...req.body, userId: tokenDecode.id }
         }
         else {
             // If decoding failed -> invalid token

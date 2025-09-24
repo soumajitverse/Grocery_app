@@ -131,11 +131,10 @@ export const AppContextProvider = ({ children }) => {
         fetchProducts()
     }, [])
 
-    
+
     // Update DB Cart Items
-    const updateCart = async (params) => {
+    const updateCart = async () => {
         try {
-            console.log(req.body)
             const { data } = await axios.post('/api/cart/update', { cartItems })
             if (!data.success) {
                 toast.error(data.message)

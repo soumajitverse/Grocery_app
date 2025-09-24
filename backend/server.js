@@ -8,6 +8,7 @@ import sellerRouter from './routes/seller.route.js'
 import productRouter from './routes/product.route.js'
 import addressRouter from './routes/address.route.js'
 import orderRouter from './routes/order.route.js'
+import cartRouter from './routes/cart.route.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -30,7 +31,7 @@ app.get('/', (req, res) => res.send("Api is Working"))
 app.use('/api/user', userRouter)
 app.use('/api/seller', sellerRouter)
 app.use('/api/product', productRouter)
-app.use('/api/cart', productRouter)
+app.use('/api/cart', cartRouter)
 app.use('/api/address', addressRouter)
 app.use('/api/order', orderRouter)
 app.listen(port, () => {
