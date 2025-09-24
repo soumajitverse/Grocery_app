@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
 
 const ProductList = () => {
 
@@ -20,8 +21,22 @@ const ProductList = () => {
     searchQuery,
     setSearchQuery,
     getCartCount,
-    getCartAmount
+    getCartAmount,
+    fetchProducts
   } = useAppContext()
+
+  // function to change product stock
+  const toggleStock = async (id, inStock) => {
+    try {
+      const { data } = await axios.post(' /api/product/stock', { id, inStock })
+      if (data.success) {
+        toast.success(data.message)
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Sorry, can't update the stock!")
+    }
+  }
 
 
   return (
@@ -62,7 +77,12 @@ const ProductList = () => {
                   {/* product stock status */}
                   <td className="px-4 py-3">
                     <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
-                      <input type="checkbox" className="sr-only peer" />
+                      <input
+                      onClick={() => {
+                        toggleStock(product._id, !product.inStock)
+                      }}
+                      checked={product.inStock}
+                      type="checkbox" className="sr-only peer" />
                       <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-primary transition-colors duration-200"></div>
                       <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                     </label>
