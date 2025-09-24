@@ -44,10 +44,18 @@ export const AppContextProvider = ({ children }) => {
     }
 
 
-    // fetch all the products
+    // Fetch All The Products
     const fetchProducts = async () => {
-        setProducts(dummyProducts)
+        try {
+            const { data } = await axios.get('api/product/list')
+            if (data.success) {
+                setProducts(data.products)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
+
 
     // add product to cart
     const addToCart = (itemId) => {
@@ -107,6 +115,7 @@ export const AppContextProvider = ({ children }) => {
     useEffect(() => {
         fetchSellerStatus() // function to check seller is logged in or not
         fetchProducts()
+   
     }, [])
 
 
@@ -128,7 +137,8 @@ export const AppContextProvider = ({ children }) => {
         setSearchQuery,
         getCartCount,
         getCartAmount,
-        axios
+        axios,
+        fetchProducts
     }
 
     return (
