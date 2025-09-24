@@ -5,7 +5,7 @@ const userAuth = async (req, res, next) => {
     try {
         const { token } = req.cookies // Extract token from cookies 
 
-        // If no token is found → user is not logged in / unauthorized
+        // If no token is found -> user is not logged in / unauthorized
         if (!token) {
             return res.status(401).json({
                 success: false,
@@ -16,20 +16,22 @@ const userAuth = async (req, res, next) => {
         // Verify and decode the token using JWT_SECRET
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET)
 
-        // If decoding is successful → attach userId to request body
+        // If decoding is successful -> attach userId to request body
         // (controllers can later access req.body.userId)
+        //    let ID = tokenDecode.id
         if (tokenDecode.id) {
-            req.body.userId = tokenDecode.id
+            req.body = { userId: tokenDecode.id }
         }
         else {
-            // If decoding failed → invalid token
+            // If decoding failed -> invalid token
+            console.log("mother fucker")
             return res.status(401).json({
                 success: false,
                 message: "Not Authorised"
             })
         }
 
-        // Call next() → pass control to the next middleware/controller
+        // Call next() -> pass control to the next middleware/controller
         next()
 
     } catch (error) {

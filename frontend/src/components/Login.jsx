@@ -37,10 +37,10 @@ const Login = () => {
 
             const { data } = await axios.post(`/api/user/${state}`, { name, email, password })
             if (data.success) {
-                if(state === 'login'){
+                if (state === 'login') {
                     toast.success("Logged in successfully")
                 }
-                else{
+                else {
                     toast.success("Signed up successfully")
                 }
                 navigate('/')
