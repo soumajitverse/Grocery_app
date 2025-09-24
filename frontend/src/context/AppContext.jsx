@@ -140,7 +140,7 @@ export const AppContextProvider = ({ children }) => {
                 toast.error(data.message)
             }
         } catch (error) {
-            console.log(user)
+            console.log(error)
             toast.error(error.message)
         }
     }
@@ -170,7 +170,8 @@ export const AppContextProvider = ({ children }) => {
         getCartCount,
         getCartAmount,
         axios,
-        fetchProducts
+        fetchProducts,
+        fetchUserStatus
     }
 
     return (

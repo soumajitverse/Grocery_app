@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 const userAuth = async (req, res, next) => {
     try {
         const { token } = req.cookies // Extract token from cookies 
-        
+
         // If no token is found -> user is not logged in / unauthorized
         if (!token) {
             return res.status(401).json({
@@ -12,7 +12,6 @@ const userAuth = async (req, res, next) => {
                 message: "Not Authorised"
             })
         }
-
         // Verify and decode the token using JWT_SECRET
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET)
 
@@ -20,7 +19,7 @@ const userAuth = async (req, res, next) => {
         // (controllers can later access req.body.userId)
         //    let ID = tokenDecode.id
         if (tokenDecode.id) {
-            req.body = {...req.body, userId: tokenDecode.id }
+            req.body = { ...req.body, userId: tokenDecode.id }
         }
         else {
             // If decoding failed -> invalid token

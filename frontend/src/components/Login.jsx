@@ -23,7 +23,8 @@ const Login = () => {
         getCartCount,
         getCartAmount,
         axios,
-        fetchProducts } = useAppContext()
+        fetchProducts, fetchUserStatus
+    } = useAppContext()
 
     const [state, setState] = useState("login");
     const [name, setName] = useState("");
@@ -39,6 +40,7 @@ const Login = () => {
             if (data.success) {
                 if (state === 'login') {
                     toast.success("Logged in successfully")
+                    fetchUserStatus() // add this for fetching real time cart data for user from DB
                 }
                 else {
                     toast.success("Signed up successfully")
@@ -48,7 +50,7 @@ const Login = () => {
                 setShowUserLogin(false)
             }
         } catch (error) {
-            toast.error('Something went wrong!')
+            toast.error(error.response.data.message)
         }
     }
 
