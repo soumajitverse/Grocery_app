@@ -32,6 +32,7 @@ const ProductList = () => {
       const { data } = await axios.post('/api/product/stock', { id, inStock })
       if (data.success) {
         toast.success(data.message)
+        fetchProducts() // add this to update the local product array otherwise the product inStock is updated but the checkbox is not updating
       }
     } catch (error) {
       console.log(error)
@@ -80,8 +81,6 @@ const ProductList = () => {
                     <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
                       <input
                       onChange={() => {
-                        console.log(product._id)
-                        console.log(product.inStock)
                         toggleStock(product._id, !product.inStock)
                       }}
                       checked={product.inStock}
