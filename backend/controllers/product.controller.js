@@ -16,7 +16,6 @@ export const addProduct = async (req, res) => {
             await Promise.all(
                 images.map(async (image) => {
                     let link = await uploadOnCloudinary(image.path)
-                    console.log(link)
                     imagesUrl.push(link) // adding link in the array
                 })
             )

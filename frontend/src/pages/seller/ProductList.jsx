@@ -22,13 +22,14 @@ const ProductList = () => {
     setSearchQuery,
     getCartCount,
     getCartAmount,
-    fetchProducts
+    fetchProducts,
+    axios
   } = useAppContext()
 
   // function to change product stock
   const toggleStock = async (id, inStock) => {
     try {
-      const { data } = await axios.post(' /api/product/stock', { id, inStock })
+      const { data } = await axios.post('/api/product/stock', { id, inStock })
       if (data.success) {
         toast.success(data.message)
       }
@@ -78,7 +79,9 @@ const ProductList = () => {
                   <td className="px-4 py-3">
                     <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
                       <input
-                      onClick={() => {
+                      onChange={() => {
+                        console.log(product._id)
+                        console.log(product.inStock)
                         toggleStock(product._id, !product.inStock)
                       }}
                       checked={product.inStock}
