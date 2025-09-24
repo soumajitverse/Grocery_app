@@ -19,7 +19,11 @@ const Login = () => {
         removeFromCart,
         cartItems,
         searchQuery,
-        setSearchQuery } = useAppContext()
+        setSearchQuery,
+        getCartCount,
+        getCartAmount,
+        axios,
+        fetchProducts } = useAppContext()
 
     const [state, setState] = useState("login");
     const [name, setName] = useState("");
@@ -28,12 +32,25 @@ const Login = () => {
 
     // function to handle submit
     const onSubmitHandler = async (event) => {
-        event.preventDefault();
-        setUser({
-            email: "test@gmail.com",
-            name: "Soumajit"
-        })
-        setShowUserLogin(false)
+        try {
+            event.preventDefault();
+
+            const { data } = await axios.post(`/api/user/${state}`, { name, email, password })
+            if (data.success) {
+                if(state === 'login'){
+                    toast.success("Logged in successfully")
+                }
+                else{
+                    toast.success("Signed up successfully")
+                }
+                navigate('/')
+                setUser(data.user)
+                setShowUserLogin(false)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+        }
     }
 
     return (
