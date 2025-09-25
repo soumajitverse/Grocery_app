@@ -23,8 +23,14 @@ const MyOrders = () => {
         getCartCount,
         getCartAmount } = useAppContext()
 
-    // function to fetch my orders
+    // function to fetch individual user orders
     const fetchMyOrders = async () => {
+try {
+    
+} catch (error) {
+    
+}
+
         setMyOrders(dummyOrders)
     }
 
