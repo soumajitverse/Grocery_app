@@ -73,7 +73,11 @@ const Cart = () => {
 
     // function to place order
     const placeOrder = async () => {
-
+try {
+    
+} catch (error) {
+    
+}
     }
 
 
