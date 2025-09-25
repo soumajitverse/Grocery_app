@@ -17,22 +17,36 @@ const Orders = () => {
     updateCartItem,
     removeFromCart,
     cartItems,
+    setCartItems,
     searchQuery,
     setSearchQuery,
     getCartCount,
-    getCartAmount
+    getCartAmount,
+    axios,
+    fetchProducts,
+    fetchUserStatus
   } = useAppContext()
 
   const [orders, setOrders] = useState([])
 
   // function to fetch the orders
   const fetchOrders = async () => {
-    setOrders(dummyOrders)
+    try {
+      const { data } = await axios.get('/api/order/seller')
+      if (data.success) {
+        setOrders(data.orders)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
+
   useEffect(() => {
-    fetchOrders()
-  }, [])
+    if (isSeller) {
+      fetchOrders()
+    }
+  }, [isSeller])
 
 
   return (
