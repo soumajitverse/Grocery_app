@@ -44,7 +44,6 @@ export const placeOrderCOD = async (req, res) => {
         })
 
     } catch (error) {
-        console.log("khanki magi")
         return res.status(500).json({
             success: false,
             message: error.message

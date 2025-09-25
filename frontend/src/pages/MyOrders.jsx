@@ -18,26 +18,33 @@ const MyOrders = () => {
         updateCartItem,
         removeFromCart,
         cartItems,
+        setCartItems,
         searchQuery,
         setSearchQuery,
         getCartCount,
-        getCartAmount } = useAppContext()
+        getCartAmount,
+        axios,
+        fetchProducts,
+        fetchUserStatus } = useAppContext()
 
     // function to fetch individual user orders
     const fetchMyOrders = async () => {
-try {
-    
-} catch (error) {
-    
-}
-
-        setMyOrders(dummyOrders)
+        try {
+            const { data } = await axios.get('/api/order/user')
+            if (data.success) {
+                setMyOrders(data.orders)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // whenever the component get loaded it will execute the fetchMyOrder() function
     useEffect(() => {
-        fetchMyOrders()
-    }, [])
+        if (user) {
+            fetchMyOrders()
+        }
+    }, [user])
 
 
     return (
@@ -91,8 +98,8 @@ try {
                                     <p>Status: {order.status}</p>
 
                                     {/* order.createdAt is a timestamp string (like "2025-03-25T07:17:46.018Z").
-                                 new Date(order.createdAt) → Converts the string into a JavaScript Date object.
-                                .toLocaleDateString() → Formats the date into a human-readable form, based on the user’s browser locale.
+                                 new Date(order.createdAt) -> Converts the string into a JavaScript Date object.
+                                .toLocaleDateString() -> Formats the date into a human-readable form, based on the user’s browser locale.
                                 */}
                                     <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
                                 </div>
