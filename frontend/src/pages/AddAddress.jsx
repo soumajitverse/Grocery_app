@@ -3,6 +3,28 @@ import { useState } from 'react'
 import { assets } from '../assets/assets'
 import InputField from '../components/InputField'
 
+const { currency,
+        navigate,
+        user,
+        setUser,
+        isSeller,
+        setIsSeller,
+        showUserLogin,
+        setShowUserLogin,
+        products,
+        addToCart,
+        updateCartItem,
+        removeFromCart,
+        cartItems,
+        searchQuery,
+        setSearchQuery,
+        getCartCount,
+        getCartAmount,
+        axios,
+        fetchProducts,
+        fetchUserStatus,
+        setCartItems} = useAppContext()
+
 const AddAddress = () => {
 
     const [address, setAddress] = useState({
