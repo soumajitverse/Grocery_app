@@ -22,8 +22,7 @@ export const addAddress = async (req, res) => {
 export const getAddress = async (req, res) => {
     try {
         const { userId } = req.body
-        const addresses = await Address.findById(userId)
-
+        const addresses = await Address.find({userId})
         return res.status(200).json({
             success: true,
             addresses
