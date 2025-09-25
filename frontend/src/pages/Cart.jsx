@@ -195,7 +195,7 @@ const Cart = () => {
 
                                     <p
                                         // it will redirect to add address page
-                                        onClick={() => navigate('/add-address')} className="text-primary text-center cursor-pointer p-2 hover:bg-primary hover:text-white relative hover:font-bold hover:text-base z-80 bg-white">
+                                        onClick={() => navigate('/add-address')} className="text-primary text-center cursor-pointer px-2 py-1  hover:bg-primary hover:text-white relative hover:font-bold hover:text-base z-80 bg-white">
                                         Add address
                                     </p>
                                 </div>
