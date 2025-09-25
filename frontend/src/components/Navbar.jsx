@@ -26,7 +26,8 @@ const Navbar = () => {
         getCartCount,
         getCartAmount,
         axios,
-        fetchProducts
+        fetchProducts,
+        setCartItems
     } = useAppContext()
 
     // function to logout
@@ -36,6 +37,7 @@ const Navbar = () => {
             if (data.success) {
                 toast.success(data.message)
                 setUser(null)
+                setCartItems({}) // after logout cart will be empty
                 navigate('/')
             }
         } catch (error) {

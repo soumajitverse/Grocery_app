@@ -799,7 +799,7 @@ export const dummyAddress = [
     zipcode: 700244,
     country: "IN",
     phone: "1234567890",
-  },
+  }
 ];
 
 export const dummyOrders = [
