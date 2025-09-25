@@ -62,6 +62,7 @@ const Cart = () => {
     
                 if (addresses.length > 0) {
                     setSelectedAddress(addresses[0])
+                    // here getting a problem
                 }
             }
         } catch (error) {
@@ -77,7 +78,7 @@ const Cart = () => {
 
     }
 
-    
+
     useEffect(() => {
         if (products.length > 0 && cartItems) {
             getCart()
