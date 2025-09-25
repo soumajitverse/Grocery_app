@@ -1,9 +1,13 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { assets } from '../assets/assets'
 import InputField from '../components/InputField'
+import toast from 'react-hot-toast';
+import { useAppContext } from '../context/AppContext'
 
-const { currency,
+const AddAddress = () => {
+
+    const { currency,
         navigate,
         user,
         setUser,
@@ -23,9 +27,7 @@ const { currency,
         axios,
         fetchProducts,
         fetchUserStatus,
-        setCartItems} = useAppContext()
-
-const AddAddress = () => {
+        setCartItems } = useAppContext()
 
     const [address, setAddress] = useState({
         firstName: "",
@@ -54,7 +56,27 @@ const AddAddress = () => {
     // function for handling the submit event
     const onSubmitHandler = async (e) => {
         e.preventDefault() // it will stop the webpage from reloading
+        try {
+            const { data } = await axios.post('/api/address/add', { address })
+            if (data.success) {
+                toast.success(data.message)
+                navigate('/cart')
+            }
+        } catch (error) {
+            toast.console.error();
+            ("Sorry, can't add address")
+            console.log(error)
+        }
+
     }
+
+
+    // if user is not login then it will redirect him/her to cart page
+    useEffect(() => {
+        if (!user) {
+            navigate('/cart')
+        }
+    }, [])
 
 
     return (
