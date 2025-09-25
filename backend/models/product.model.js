@@ -23,8 +23,7 @@ const productSechma = new mongoose.Schema({
     },
     description: {
         type: Array,
-        required: true,
-        unique:true
+        required: true
     },
     inStock: {
         type: Boolean,
