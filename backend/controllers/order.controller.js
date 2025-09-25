@@ -27,7 +27,7 @@ export const placeOrderCOD = async (req, res) => {
         let amount = individualAmounts.reduce((acc, curr) => (acc + curr), 0) // add 0 intial value to acc bcz if the array is empty then it will throw error
 
         // Add tax Charge (2%) on total
-        amount += Math.floor(amount * 0.02)
+        amount += Math.round(amount * 0.02)
 
 
         await Order.create({
@@ -44,6 +44,7 @@ export const placeOrderCOD = async (req, res) => {
         })
 
     } catch (error) {
+        console.log("khanki magi")
         return res.status(500).json({
             success: false,
             message: error.message
