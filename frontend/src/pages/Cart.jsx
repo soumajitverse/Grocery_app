@@ -27,7 +27,7 @@ const Cart = () => {
 
     const [showAddress, setShowAddress] = useState(false)
     const [cartArray, setCartArray] = useState([])
-    const [addresses, setAddresses] = useState(dummyAddress[0])
+    const [addresses, setAddresses] = useState(dummyAddress)
     const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0])
     const [paymentOption, setPaymentOption] = useState("COD")
 
@@ -182,19 +182,24 @@ const Cart = () => {
                                 Change
                             </button>
                             {showAddress && (
-                                <div className="absolute top-12 py-1 bg-white border border-gray-300 text-sm w-full">
-                                    {addresses.map((address, index) => (<p onClick={() => {
+                                <div className="absolute top-8 py-1 bg-white border border-gray-300 text-sm w-full rounded shadow-sm">
+
+                                    {addresses.map((address, index) => (<p key={index} onClick={() => {
                                         setSelectedAddress(address)
                                         setShowAddress(false)
-                                    }} className="text-gray-500 p-2 hover:bg-gray-100">
-                                        {assress.street}, {assress.city}, {assress.state},{assress.zipcode}, {assress.country}
+                                    }} className="text-gray-500 p-2 bg-white hover:bg-primary hover:text-white
+                                   relative z-80 cursor-pointer">
+                                        {address.street}, {address.city}, {address.state},{address.zipcode}, {address.country}
                                     </p>))}
+
+
                                     <p
                                         // it will redirect to add address page
-                                        onClick={() => navigate('/add-address')} className="text-primary text-center cursor-pointer p-2 hover:bg-primary/10">
+                                        onClick={() => navigate('/add-address')} className="text-primary text-center cursor-pointer p-2 hover:bg-primary hover:text-white relative hover:font-bold hover:text-base z-80 bg-white">
                                         Add address
                                     </p>
                                 </div>
+
                             )}
                         </div>
 
@@ -203,17 +208,17 @@ const Cart = () => {
                         {/* payment mode selection */}
                         <div className="flex flex-col w-full text-sm relative mt-2">
                             <button type="button" onClick={() => setIsOpen(!isOpen)}
-                                className=" w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-800 text-base border-gray-300 cursor-pointer flex justify-between ">
+                                className=" w-full text-left px-4 pr-2 py-2 border rounded-xl bg-white text-gray-500 text-base border-gray-300 cursor-pointer flex justify-between ">
                                 {
                                     paymentOption === "COD" ? (<span>Cash On Delivery</span>) : (<span>Online Payment</span>)
                                 }
-                              
+
                                 <img src={assets.chevron} alt="chevron" className={` w-3 opacity-50 ${isOpen ? "rotate-90" : "rotate-0"} `} />
 
                             </button>
 
                             {isOpen && (
-                                <ul className="absolute z-10 top-full left-0 w-full bg-white border border-gray-300 rounded  mt-1 py-2 shadow-sm">
+                                <ul className="absolute z-10 top-full left-0 w-full bg-white border border-gray-300 rounded  mt-1 py-2 shadow-sm text-gray-500">
 
                                     <li key="COD" value="COD" className="px-4 py-2 hover:bg-primary hover:text-white cursor-pointer"
                                         onClick={() => {
@@ -277,7 +282,7 @@ const Cart = () => {
             <div className='flex flex-col justify-center items-center'>
                 <div className='text-xl font-bold'>Oops, your cart looks empty</div>
                 <div>
-                   Start fresh — explore and add your favorites.
+                    Start fresh — explore and add your favorites.
                 </div>
             </div>
 
