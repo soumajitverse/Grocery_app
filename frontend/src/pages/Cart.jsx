@@ -20,14 +20,14 @@ const Cart = () => {
         updateCartItem,
         removeFromCart,
         cartItems,
+        setCartItems,
         searchQuery,
         setSearchQuery,
         getCartCount,
         getCartAmount,
         axios,
         fetchProducts,
-        fetchUserStatus,
-        setCartItems
+        fetchUserStatus
     } = useAppContext()
 
     const [showAddress, setShowAddress] = useState(false)
@@ -73,11 +73,41 @@ const Cart = () => {
 
     // function to place order
     const placeOrder = async () => {
-try {
-    
-} catch (error) {
-    
-}
+        try {
+            if (!user) {
+                toast.error("Please login or sign up to place your order")
+            }
+
+            if (user && !selectedAddress) {
+                return toast.error('Please select an address')
+            }
+            // console.log("cartArray ", cartArray)
+            // console.log("cartItems ", cartItems)
+            
+            // Place Order with COD
+            if (paymentOption === 'COD') {
+                const { data } = await axios.post('/api/order/cod', {
+                    userId: user._id,
+                    items: cartArray.map((item) => ({
+                        products: item._id,
+                        quantity: item.quantity
+                    })),
+                    address: selectedAddress._id
+                })
+            }
+
+            if (data.success) {
+                toast.success(data.message)
+                setCartItems({}) // it will make the cart empty after placing order
+                navigate('/my-orders')
+            }
+
+            // Place Order with Online
+
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
     }
 
 
