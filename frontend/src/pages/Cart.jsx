@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../context/AppContext'
 import { assets, dummyAddress } from '../assets/assets'
+import toast from 'react-hot-toast';
 
 const Cart = () => {
 
@@ -22,7 +23,11 @@ const Cart = () => {
         searchQuery,
         setSearchQuery,
         getCartCount,
-        getCartAmount
+        getCartAmount,
+        axios,
+        fetchProducts,
+        fetchUserStatus,
+        setCartItems
     } = useAppContext()
 
     const [showAddress, setShowAddress] = useState(false)
@@ -48,16 +53,43 @@ const Cart = () => {
         setCartArray(tempArray)
     }
 
+    // get the user address from DB
+    const getUserAddress = async () => {
+        try {
+            const { data } = await axios.get('/api/address/get')
+            if (data.success) {
+                setAddresses(data.addresses)
+    
+                if (addresses.length > 0) {
+                    setSelectedAddress(addresses[0])
+                }
+            }
+        } catch (error) {
+            toast.error("Sorry, can't get address")
+            console.log(error)
+        }
+
+    }
+
+
     // function to place order
     const placeOrder = async () => {
 
     }
 
+    
     useEffect(() => {
         if (products.length > 0 && cartItems) {
             getCart()
         }
     }, [products, cartItems])
+
+    useEffect(() => {
+        if (user) {
+            getUserAddress()
+        }
+    }, [user])
+
 
     return (products.length > 0 && cartItems && cartArray.length) ? (
         <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
