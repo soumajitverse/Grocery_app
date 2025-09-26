@@ -1,4 +1,5 @@
 import logo from "./logo.png";
+import empty_bag from "./empty-bag.svg"
 import chevron from './chevron.svg'
 import search_icon from "./search_icon.svg";
 import remove_icon from "./remove_icon.svg";
@@ -74,6 +75,7 @@ import empty_cart_image from './empty_cart_image.png';
 
 export const assets = {
   logo,
+  empty_bag,
   chevron,
   search_icon,
   remove_icon,

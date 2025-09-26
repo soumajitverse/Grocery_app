@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../context/AppContext'
-import { dummyOrders } from '../assets/assets'
+import { assets, dummyOrders } from '../assets/assets'
 
 const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([])
+    const [showEmptyOrderPage, setShowEmptyOrderPage] = useState(true)
     const { currency,
         navigate,
         user,
@@ -33,6 +34,10 @@ const MyOrders = () => {
             const { data } = await axios.get('/api/order/user')
             if (data.success) {
                 setMyOrders(data.orders)
+
+                if (data.orders.length) {
+                    setShowEmptyOrderPage(false)
+                }
             }
         } catch (error) {
             console.log(error)
@@ -47,7 +52,7 @@ const MyOrders = () => {
     }, [user])
 
 
-    return (
+    return !showEmptyOrderPage ? (
         <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
             <div className='mt-16 pb-16'>
 
@@ -114,6 +119,41 @@ const MyOrders = () => {
                 ))}
             </div>
         </div>
+    ) : (<div className='px-6 md:px-16 lg:px-24 xl:px-32'>
+
+        <div className='flex flex-col items-end w-max mb-0 mt-16'>
+            <p className='text-2xl font-medium uppercase'>My orders</p>
+            <div className='w-16 h-0.5 bg-primary rounded-full'></div>
+        </div>
+
+        <div className='-mt-16 h-svh px-6 md:px-16 lg:px-24 xl:px-32 flex flex-col justify-center items-center gap-2'>
+
+            {/* empty my order icon */}
+            <img src={assets.empty_bag} alt="empty order icon"
+                className='w-30' />
+
+            <div className='flex flex-col justify-center items-center'>
+                <div className='text-xl font-bold'>No orders found</div>
+                <div>
+                    shop now and grab the best deals!
+                </div>
+            </div>
+
+            <button
+                onClick={() => {
+                    navigate('/products') // it will redirect you to all products page
+                    scrollTo(0, 0)
+                }}
+                className="group cursor-pointer flex items-center mt-6 gap-2 text-primary font-medium">
+                <img
+                    className='group-hover:-translate-x-1 transition'
+                    src={assets.arrow_right_icon_colored} alt="arrow" />
+                Continue Shopping
+            </button>
+        </div>
+
+
+    </div>
     )
 }
 
