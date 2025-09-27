@@ -1,5 +1,6 @@
 import Order from "../models/order.model.js"
 import Product from "../models/product.model.js"
+import User from "../models/user.model.js"
 import Stripe from "stripe"
 
 // Place Order COD : /api/order/cod
@@ -154,6 +155,76 @@ export const placeOrderStripe = async (req, res) => {
         })
     }
 }
+
+// Stripe Webhooks to verify Payment Actions : /stripe
+export const stripeWebhooks = async (request, response) => {
+    // Stripe Gateway Initialize
+    const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+    let event
+
+    // Get the signature sent by Stripe
+    const sign = request.headers['stripe-signature'];
+    try {
+        event = stripeInstance.webhooks.constructEvent(
+            request.body,
+            sign,
+            process.env.STRIPE_WEBHOOK_SECRET
+        );
+    } catch (error) {
+        response.status(400).send(`Webhook Error: ${error.message}`)
+    }
+
+
+    // Handle the event
+    switch (event.type) {
+        case 'payment_intent.succeeded': {
+            const paymentIntent = event.data.object;
+            const paymentIntentId = paymentIntent.id;
+
+            // Getting session Metadata
+            const session = await stripeInstance.checkout.sessions.list({
+                payment_intent: paymentIntentId,
+            });
+
+            // extracting orderId and userId from metadata
+            const { orderId, userId } = session.data[0].metadata
+
+            // Updating the DB by making the payment status : paid using the orderId
+            await Order.findByIdAndUpdate(orderId, { isPaid: true })
+
+            // clear the cart data after order successfull
+            await User.findByIdAndUpdate(userId, { cartItems: {} })
+
+            break;
+        }
+
+        case 'payment_intent.payment_failed': {
+            const paymentIntent = event.data.object;
+            const paymentIntentId = paymentIntent.id;
+
+            // Getting session Metadata
+            const session = await stripeInstance.checkout.sessions.list({
+                payment_intent: paymentIntentId,
+            });
+
+            // extracting orderId and userId from metadata
+            const { orderId, userId } = session.data[0].metadata
+
+            // Updating the DB by deleting the payment order using the orderId
+            await Order.findByIdAndDelete(orderId)
+
+            break;
+        }
+
+        default:
+            console.error(`Unhandled event type ${event.type}`)
+    }
+
+    // Return a 200 response to acknowledge receipt of the event
+    response.status(200).json({ received: true });
+}
+
 
 // Get Orders by User ID : /api/order/user
 export const getUserOrders = async (req, res) => {

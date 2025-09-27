@@ -9,6 +9,7 @@ import productRouter from './routes/product.route.js'
 import addressRouter from './routes/address.route.js'
 import orderRouter from './routes/order.route.js'
 import cartRouter from './routes/cart.route.js'
+import { stripeWebhooks } from './controllers/order.controller.js'
 dotenv.config()
 
 const port = process.env.PORT || 4000
@@ -17,6 +18,8 @@ const app = express()
 
 // Allow multiple origins
 const allowedOrigin = "http://localhost:5173"
+
+app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks)
 
 // Middleware configuration
 app.use(express.json())
