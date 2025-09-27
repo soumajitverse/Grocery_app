@@ -133,7 +133,7 @@ export const placeOrderStripe = async (req, res) => {
         const session = await stripeInstace.checkout.sessions.create({
             line_items,
             mode: 'payment',
-            success_url: `${origin}/my-orders`,
+            success_url: `${origin}/loading?next=my-orders`, // add query to move from loading to my-orders. Actually it is used in Loading components
             cancel_url: `${origin}/cart`,
             metadata: {
                 orderId: order._id.toString(),
