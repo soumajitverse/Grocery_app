@@ -37,8 +37,14 @@ app.use('/api/product', productRouter)
 app.use('/api/cart', cartRouter)
 app.use('/api/address', addressRouter)
 app.use('/api/order', orderRouter)
+
+const DBconnection = async () => {
+  await  connectDB()
+}
+
+
 app.listen(port, () => {
-  connectDB()
+ DBconnection()
   console.log(`server is running on http://localhost:${port}`)
 })
 
