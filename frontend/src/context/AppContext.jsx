@@ -33,7 +33,7 @@ export const AppContextProvider = ({ children }) => {
     // Fetch Seller Status (Check Login or not)
     const fetchSellerStatus = async () => {
         try {
-            const { data } = await axios.get('api/seller/is-auth')
+            const { data } = await axios.get('/api/seller/is-auth')
             if (data.success) {
                 setIsSeller(true)
             }
@@ -46,7 +46,7 @@ export const AppContextProvider = ({ children }) => {
     // Fetch User Status (Check Login or not) and Cart Items
     const fetchUserStatus = async () => {
         try {
-            const { data } = await axios.get('api/user/is-auth')
+            const { data } = await axios.get('/api/user/is-auth')
             if (data.success) {
                 setUser(data.user)
                 setCartItems(data.user.cartItems)
@@ -60,7 +60,7 @@ export const AppContextProvider = ({ children }) => {
     // Fetch All The Products
     const fetchProducts = async () => {
         try {
-            const { data } = await axios.get('api/product/list')
+            const { data } = await axios.get('/api/product/list')
             if (data.success) {
                 setProducts(data.products)
             }

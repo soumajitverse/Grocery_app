@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 const Loading = () => {
     const { navigate } = useAppContext()
     let location = useLocation()
-    console.log(location)
     const query = new URLSearchParams(location.search)
     const nextUrl = query.get('next') // value of nextUrl will be my-orders
 
