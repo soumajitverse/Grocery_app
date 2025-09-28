@@ -17,7 +17,8 @@ const app = express()
 
 
 // Allow multiple origins
-const allowedOrigin = "http://localhost:5173"
+// const allowedOrigin = "http://localhost:5173"
+const allowedOrigin = "https://grocery-app-flax-five.vercel.app"
 
 app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks)
 
