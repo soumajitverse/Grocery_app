@@ -39,7 +39,7 @@ app.use('/api/address', addressRouter)
 app.use('/api/order', orderRouter)
 
 const DBconnection = async () => {
-  await  connectDB()
+  await connectDB()
 }
 
 
