@@ -75,6 +75,7 @@ const AddProduct = () => {
       
     } catch (error){
       console.log(error.response.data.message)
+      console.log("Add product --->  ",error)
     }
   }
 
