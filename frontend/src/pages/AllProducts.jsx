@@ -19,21 +19,25 @@ const AllProducts = () => {
         }
     }, [products, searchQuery])
 
-    return (
+    return filteredProducts.length ? (
         <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
-        <div className='mt-16 flex flex-col'>
-            <div className='flex flex-col items-end w-max'>
-                <p className='text-2xl font-medium uppercase'>All products</p>
-                <div className='w-16 h-0.5 bg-primary rounded-full'></div>
-            </div>
+            <div className='mt-16 flex flex-col'>
+                <div className='flex flex-col items-end w-max'>
+                    <p className='text-2xl font-medium uppercase'>All products</p>
+                    <div className='w-16 h-0.5 bg-primary rounded-full'></div>
+                </div>
 
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6'>
-                {filteredProducts.filter((product) => product.inStock).map((product, index) => (
-                    <ProductCard key={index} product={product} />
-                ))}
-            </div>
+                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6'>
+                    {filteredProducts.filter((product) => product.inStock).map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                    ))}
+                </div>
 
+            </div>
         </div>
+    ) : (
+        <div className='flex min-h-screen justify-center items-center'>
+            <h1 className='text-primary text-xl font-medium'> No products found.</h1>
         </div>
     )
 }
