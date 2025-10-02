@@ -54,6 +54,7 @@ const AddProduct = () => {
 
       if (category === '') {
         toast.error("Please select category to add prodct")
+        return
       }
 
       const formData = new FormData()
