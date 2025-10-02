@@ -73,11 +73,12 @@ const Cart = () => {
 
     // function to place order
     const placeOrder = async () => {
-        try {
-            if (!user) {
-                toast.error("Please login or sign up to place your order")
-            }
 
+        if (!user) {
+            toast.error("Please login or sign up to place your order")
+        }
+
+        try {
             if (user && !selectedAddress) {
                 return toast.error('Please select an address')
             }
