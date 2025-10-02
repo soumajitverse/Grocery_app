@@ -74,8 +74,9 @@ const Cart = () => {
     // function to place order
     const placeOrder = async () => {
 
-        if (!user) {
+        if (user === null) {
             toast.error("Please login or sign up to place your order")
+            return
         }
 
         try {
