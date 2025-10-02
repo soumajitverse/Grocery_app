@@ -52,6 +52,10 @@ const AddProduct = () => {
         description: description.split('\n')
       }
 
+      if (category === '') {
+        toast.error("Please select category to add prodct")
+      }
+
       const formData = new FormData()
 
       formData.append("productData", JSON.stringify(productData)) // convert productData from json to string
@@ -72,10 +76,10 @@ const AddProduct = () => {
         setPrice('')
         setOfferPrice('')
       }
-      
-    } catch (error){
+
+    } catch (error) {
       console.log(error.response.data.message)
-      console.log("Add product --->  ",error)
+      console.log("Add product --->  ", error)
     }
   }
 
