@@ -64,11 +64,11 @@ const MyOrders = () => {
                 {/* rendering orders */}
                 {myOrders.map((order, index) => (
 
-                    <div key={index} className='border border-gray-300 rounded-lg mb-10 p-4 py-5 max-w-4xl'>
+                    <div key={index} className='border border-gray-300 rounded-lg mb-10 px-4 py-5 max-w-4xl'>
 
                         {/* printing order id, payment mode and amount */}
-                        <p className='flex justify-between md:items-center text-gray-400 md:font-medium max-md:flex-col'>
-                            <span>OrderId: {order._id}</span>
+                        <p className='flex flex-col md:items-center text-gray-400 md:font-medium md:grid md:grid-cols-4 md:gap-16'>
+                            <span className='md:col-span-2'>OrderId: {order._id}</span>
                             <span>Payment: {order.paymentType}</span>
                             <span>Total Amount: {currency}{order.amount}</span>
                         </p>
@@ -79,9 +79,9 @@ const MyOrders = () => {
                                 className={`relative bg-white text-gray-500/70 ${
                                     // Add bottom border to all items except the last one
                                     order.items.length !== index + 1 && "border-b"
-                                    } border-gray-300 flex flex-col md:flex-row md:items-center justify-between p-4 py-5 md:gap-16 w-full max-w-4xl`}>
+                                    } border-gray-300 flex flex-col md:grid md:grid-cols-6 md:items-center px-4 py-5 md:gap-2 w-full max-w-4xl`}>
 
-                                <div className='flex items-center mb-4 md:mb-0'>
+                                <div className='flex items-center mb-4 md:mb-0 md:col-span-3'>
 
                                     {/* printing product image */}
                                     <div className='bg-primary/10 p-4 rounded-lg'>
@@ -98,7 +98,7 @@ const MyOrders = () => {
                                 </div>
 
                                 {/* printing product quantity, status and date */}
-                                <div className='flex flex-col justify-center md:ml-8 mb-4 md:mb-0'>
+                                <div className='flex flex-col justify-center md:ml-8 mb-4 md:mb-0 md:col-span-2'>
                                     <p>Quantity: {item.quantity || "1"}</p>
                                     <p>Status: {order.status}</p>
 
