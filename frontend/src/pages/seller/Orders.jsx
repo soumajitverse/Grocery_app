@@ -55,9 +55,9 @@ const Orders = () => {
         <h2 className="text-lg font-medium">Orders List</h2>
 
         {orders.map((order, index) => (
-          <div className='max-w-4xl rounded-md border border-gray-300'>
+          <div  key={index}  className='max-w-4xl rounded-md border border-gray-300'>
             <p className='text-sm mx-5 my-3'>Order Id: {order._id}</p>
-            <div key={index} className="flex flex-col md:items-center md:grid md:grid-cols-9 md:gap-2 gap-5 p-5 ">
+            <div className="flex flex-col md:items-center md:grid md:grid-cols-9 md:gap-2 gap-5 p-5 ">
 
               <div className="flex gap-5 max-w-80 md:col-span-3">
                 <img className="w-12 h-12 object-cover" src={assets.box_icon} alt="boxIcon" />
