@@ -272,7 +272,7 @@ export const specificOrderStatus = async (req, res) => {
         const { orderId, status } = req.body // extracting orderID and status
         if (status === 'Delivered') {
             await Order.findByIdAndUpdate(orderId, {
-                status:status,
+                status: status,
                 isPaid: true
             })
         }

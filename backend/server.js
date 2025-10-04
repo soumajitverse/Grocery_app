@@ -45,7 +45,7 @@ const DBconnection = async () => {
 
 
 app.listen(port, () => {
- DBconnection()
+  DBconnection()
   console.log(`server is running on http://localhost:${port}`)
 })
 
