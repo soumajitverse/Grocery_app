@@ -265,3 +265,31 @@ export const getAllOrders = async (req, res) => {
         })
     }
 }
+
+// Change order status for specific order (for seller / admin) : /api/order/change-status
+export const specificOrderStatus = async (req, res) => {
+    try {
+        const { orderId, status } = req.body // extracting orderID and status
+        if (status === 'Delivered') {
+            await Order.findByIdAndUpdate(orderId, {
+                status:status,
+                isPaid: true
+            })
+        }
+        else {
+            await Order.findByIdAndUpdate(orderId, { status })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Order Status Updated"
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: error
+        })
+    }
+}
