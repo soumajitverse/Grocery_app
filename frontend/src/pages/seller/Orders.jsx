@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useAppContext } from '../../context/AppContext';
 import { assets, dummyOrders } from '../../assets/assets';
+import OrderStatusDropDown from '../../components/seller/OrderStatusDropDown';
 
 const Orders = () => {
   const {
@@ -55,7 +56,7 @@ const Orders = () => {
         <h2 className="text-lg font-medium">Orders List</h2>
 
         {orders.map((order, index) => (
-          <div  key={index}  className='max-w-4xl rounded-md border border-gray-300'>
+          <div key={index} className='max-w-4xl rounded-md border border-gray-300'>
             <p className='text-sm mx-5 my-3'>Order Id: {order._id}</p>
             <div className="flex flex-col md:items-center md:grid md:grid-cols-9 md:gap-2 gap-5 p-5 ">
 
@@ -93,21 +94,27 @@ const Orders = () => {
               </div>
 
               {/* printing order amount */}
-              <p className="font-medium text-lg my-auto md:col-span-2 md:pl-12">{currency}{order.amount}</p>
+              <p className="font-medium text-lg my-auto md:col-span-1 md:pl-12">{currency}{order.amount}</p>
 
               <div className="flex flex-col text-sm md:text-base text-black/60 md:col-span-2 md:pl-12">
 
                 {/* printing payment mode */}
-                <p>Method: {order.paymentType}</p>
+                <p>Method: <span className='text-sm'>{order.paymentType}</span></p>
 
                 {/* printing order date */}
-                <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
+                <p>Date: <span className='text-sm'>{new Date(order.createdAt).toLocaleDateString()}</span></p>
 
                 {/* printing payment status */}
-                <p>Payment: {order.isPaid ? "Paid" : "Pending"}</p>
-
+                <p>Payment: <span className='text-sm'>{order.isPaid ? "Paid" : "Pending"}</span></p>
               </div>
             </div>
+
+            <div className='mx-5 mb-2 flex'>
+              {/* order status drop down  component*/}
+              <span className='pt-[2px]'>Status:</span>
+              <OrderStatusDropDown orderId={order._id} curr_status={order.status} />
+            </div>
+
           </div>
         ))}
       </div>
