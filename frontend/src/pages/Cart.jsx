@@ -177,7 +177,7 @@ const Cart = () => {
                                     <div className="font-normal text-gray-500/70">
 
                                         {/* product weight */}
-                                        <p>Weight: <span>{product.weight || "N/A"}</span></p>
+                                        {/* <p>Weight: <span>{product.weight || "N/A"}</span></p> */}
 
                                         {/* product quantity */}
                                         <div className='flex items-center'>
