@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { assets, categories } from '../../assets/assets'
 import { useAppContext } from '../../context/AppContext'
 import toast from 'react-hot-toast'
@@ -15,24 +15,7 @@ const AddProduct = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const { currency,
-    navigate,
-    user,
-    setUser,
-    isSeller,
-    setIsSeller,
-    showUserLogin,
-    setShowUserLogin,
-    products,
-    addToCart,
-    updateCartItem,
-    removeFromCart,
-    cartItems,
-    searchQuery,
-    setSearchQuery,
-    getCartCount,
-    getCartAmount,
-    axios } = useAppContext()
+  const { axios } = useAppContext()
 
   const handleSelect = (e) => {
     setCategory(e)
