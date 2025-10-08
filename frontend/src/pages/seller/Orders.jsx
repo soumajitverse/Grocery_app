@@ -57,7 +57,8 @@ const Orders = () => {
 
         {orders.map((order, index) => (
           <div key={index} className='max-w-4xl rounded-md border border-gray-300'>
-            <p className='text-sm mx-5 my-3'>Order Id: {order._id}</p>
+            <p className='text-sm mx-5 mt-5'>User Id: {order.userId}</p>
+            <p className='text-sm mx-5 '>Order Id: {order._id}</p>
             <div className="flex flex-col md:items-center md:grid md:grid-cols-9 md:gap-2 gap-5 p-5 ">
 
               <div className="flex gap-5 max-w-80 md:col-span-3">
@@ -102,7 +103,18 @@ const Orders = () => {
                 <p>Method: <span className='text-sm'>{order.paymentType}</span></p>
 
                 {/* printing order date */}
-                <p>Date: <span className='text-sm'>{new Date(order.createdAt).toLocaleDateString()}</span></p>
+                <p>Date: <span className='text-sm'>{new Date(order.createdAt).toLocaleDateString("hi-IN") // Hindi (India): dd/mm/yyyy format
+                }
+                </span></p>
+
+                {/* printing order time */}
+                <p>Date: <span className='text-sm'>{new Date(order.createdAt).toLocaleTimeString("hi-IN", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true, // use false for 24-hour format
+                })
+                }
+                </span></p>
 
                 {/* printing payment status */}
                 <p>Payment: <span className='text-sm'>{order.isPaid ? "Paid" : "Pending"}</span></p>

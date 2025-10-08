@@ -97,7 +97,7 @@ const MyOrders = () => {
                                     </div>
                                 </div>
 
-                                {/* printing product quantity, status and date */}
+                                {/* printing product quantity, status, date and time*/}
                                 <div className='flex flex-col justify-center md:ml-8 mb-4 md:mb-0 md:col-span-2'>
                                     <p>Quantity: {item.quantity || "1"}</p>
                                     <p>Status: {order.status}</p>
@@ -106,7 +106,18 @@ const MyOrders = () => {
                                  new Date(order.createdAt) -> Converts the string into a JavaScript Date object.
                                 .toLocaleDateString() -> Formats the date into a human-readable form, based on the user’s browser locale.
                                 */}
-                                    <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
+                                    <p>Date: {
+                                        new Date(order.createdAt).toLocaleDateString("hi-IN") // Hindi (India): dd/mm/yyyy format
+                                    }</p>
+
+                                    <p>Time: {
+                                        new Date(order.createdAt).toLocaleTimeString("hi-IN", {
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                            hour12: true, // use false for 24-hour format
+                                        })
+                                    }</p>
+
                                 </div>
 
                                 {/* calculating each product price */}
