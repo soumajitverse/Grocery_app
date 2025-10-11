@@ -176,7 +176,7 @@ export const footerLinks = [
       { text: "Return & Refund Policy", url: "#" },
       { text: "Payment Methods", url: "#" },
       { text: "Track your Order", url: "#" },
-      { text: "Contact Us", url: "#" },
+      { text: "Contact Us", url: `${back_link}/contact` },
     ],
   },
   {
