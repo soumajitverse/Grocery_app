@@ -7,27 +7,11 @@ import { useAppContext } from '../context/AppContext'
 
 const AddAddress = () => {
 
-    const { currency,
+    const { 
         navigate,
         user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
         axios,
-        fetchProducts,
-        fetchUserStatus,
-        setCartItems } = useAppContext()
+         } = useAppContext()
 
     const [address, setAddress] = useState({
         firstName: "",

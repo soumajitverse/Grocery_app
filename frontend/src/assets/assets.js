@@ -72,6 +72,11 @@ import quinoa_image from "./quinoa_image.png";
 import brown_rice_image from "./brown_rice_image.png";
 import barley_image from "./barley_image.png";
 import empty_cart_image from './empty_cart_image.png';
+import facebook_logo from './facebook_logo.svg';
+import instagram_logo from './instagram_logo.svg';
+import x_logo from './x_logo.svg';
+
+const back_link = import.meta.env.VITE_FRONTEND_URL;
 
 export const assets = {
   logo,
@@ -104,6 +109,9 @@ export const assets = {
   add_address_iamge,
   box_icon,
   empty_cart_image,
+  facebook_logo,
+  instagram_logo,
+  x_logo
 };
 
 export const categories = [
@@ -155,10 +163,9 @@ export const footerLinks = [
   {
     title: "Quick Links",
     links: [
-      { text: "Home", url: "#" },
-      { text: "Best Sellers", url: "#" },
+      { text: "Home", url: back_link },
       { text: "Offers & Deals", url: "#" },
-      { text: "Contact Us", url: "#" },
+      { text: "Contact Us", url: `${back_link}/contact` },
       { text: "FAQs", url: "#" },
     ],
   },
@@ -175,13 +182,33 @@ export const footerLinks = [
   {
     title: "Follow Us",
     links: [
-      { text: "Instagram", url: "#" },
-      { text: "Twitter", url: "#" },
-      { text: "Facebook", url: "#" },
-      { text: "YouTube", url: "#" },
+      { logo: instagram_logo, title: "instagram_logo", url: "https://www.instagram.com/" },
+      { logo: facebook_logo, title: "facebook_logo", url: "https://www.facebook.com/" },
+      { logo: x_logo, title: "x_logo", url: "https://x.com/" }
     ],
   },
 ];
+
+export const contact = [
+  {
+    title: "Send Us a Message",
+    text: "Use the form to send us your questions, feedback, or inquiries. We'll get back to you as soon as possible."
+  },
+  {
+    title: "Alternative Contact",
+    text: "If the form doesn't work, don't worry! You can directly email us at: ",
+    mail: "majumdersoumajit07@gmail.com"
+  },
+  {
+    title: "Follow Us",
+    text: "Stay connected on social media for updates, special offers, and more.",
+    links: [
+      { logo: instagram_logo, title: "instagram_logo", url: "https://www.instagram.com/" },
+      { logo: facebook_logo, title: "facebook_logo", url: "https://www.facebook.com/" },
+      { logo: x_logo, title: "x_logo", url: "https://x.com/" }
+    ]
+  }
+]
 
 export const features = [
   {
@@ -854,7 +881,7 @@ export const dummyAddress = [
     country: "IN",
     phone: "1234567890",
   },
-  
+
 ];
 
 export const dummyOrders = [
