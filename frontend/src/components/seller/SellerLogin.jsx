@@ -2,6 +2,7 @@ import React from 'react'
 import { useAppContext } from '../../context/AppContext'
 import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { assets } from '../../assets/assets.js'
 
 const SellerLogin = () => {
 
@@ -27,6 +28,7 @@ const SellerLogin = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPass, setShowPass] = useState(false)
 
     // fucntion to handle the submit
     const onSubmitHandler = async (event) => {
@@ -67,9 +69,27 @@ const SellerLogin = () => {
 
                 <div className="w-full ">
                     <p>Password</p>
-                    <input onChange={(e) => setPassword(e.target.value)} value={password}
-                        type="password" placeholder="enter your password"
-                        className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary" required />
+
+                    <div className='relative'>
+                        <input
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            placeholder="type here"
+                            className="border border-gray-200 rounded w-full p-2 mt-1 pr-10 outline-primary"
+                            type={showPass ? "text" : "password"}
+                            required
+                        />
+                        <span
+                            onClick={() => setShowPass(!showPass)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer opacity-70 hover:opacity-100 transition z-10"
+                        >
+                            <img
+                                className='w-5 h-5'
+                                src={showPass ? assets.eye_hide : assets.eye_show}
+                                alt={showPass ? 'eye_hide' : 'eye_show'}
+                            />
+                        </span>
+                    </div>
                 </div>
 
                 <button className="bg-primary hover:bg-primary-dull text-white w-full py-2 rounded-md cursor-pointer">Login</button>

@@ -75,6 +75,8 @@ import empty_cart_image from './empty_cart_image.png';
 import facebook_logo from './facebook_logo.svg';
 import instagram_logo from './instagram_logo.svg';
 import x_logo from './x_logo.svg';
+import eye_hide from './eye_hide.svg';
+import eye_show from './eye_show.svg';
 
 const back_link = import.meta.env.VITE_FRONTEND_URL;
 
@@ -111,7 +113,9 @@ export const assets = {
   empty_cart_image,
   facebook_logo,
   instagram_logo,
-  x_logo
+  x_logo,
+  eye_hide,
+  eye_show,
 };
 
 export const categories = [
