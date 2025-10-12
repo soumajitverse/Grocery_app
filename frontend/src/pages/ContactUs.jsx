@@ -69,13 +69,18 @@ const ContactUs = () => {
                                             {item.mail}
                                         </span>
                                     </a>
-                                    <div className='flex flex-row'>
+                                    <div className='flex flex-row gap-2'>
                                         {
                                             item.links?.map((link, i) => (
+                                                // in a tag target="_blank" --> opens the link in a new tab or window 
+                                                //  rel="noopener noreferrer" --> for security reasons (prevents the new page from accessing your app’s window object
+
                                                 <a href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     key={i}>
                                                     <img
-                                                        className='m-2 ml-0'
+                                                        className='m-2 mt-4 ml-0 w-9 transition-transform duration-200 hover:scale-110 active:scale-95'
                                                         src={link.logo} alt={link.title} />
                                                 </a>
                                             ))

@@ -14,13 +14,20 @@ const Footer = () => {
                     {footerLinks.map((section, index) => (
                         <div key={index}>
                             <h3 className="font-semibold text-base text-gray-900 md:mb-5 mb-2">{section.title}</h3>
-                            <ul className="text-sm space-y-1">
+                            <ul className={`text-sm space-y-1 ${section.title === 'Follow Us' ? 'flex flex-row' : ''}`}>
                                 {section.links.map((link, i) => (
                                     <li key={i}>
-                                        <a href={link.url} className="hover:underline transition text-gray-700/90">
+                                        {/* target="_blank" --> Opens the link in a new tab or window */}
+                                        {/* target="_self" --> Opens the link in the same tab/window (the default behavior) */}
+                                        {/* rel="noopener noreferrer" --> when target="_blank, it prevents the new page from getting access to your app’s window object (protects against a security issue called tabnabbing) */}
+
+                                        <a href={link.url}
+                                            target={section.title === 'Follow Us' ? "_blank" : "_self"}
+                                            rel="noopener noreferrer"
+                                            className="hover:underline transition text-gray-700/90">
                                             {link.text}
                                             <img
-                                                className="ml-4 mb-2"
+                                                className="mr-4 transition-transform duration-200 hover:scale-110 active:scale-95"
                                                 src={link.logo} alt="" />
                                         </a>
                                     </li>
