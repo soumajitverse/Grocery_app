@@ -46,10 +46,10 @@ const ProductDetails = () => {
         <div className='px-6 md:px-16 lg:px-24 xl:px-32'>
             <div className="mt-12">
                 <p>
-                    <Link to={'/'}>Home</Link> {`> `}
-                    <Link to={'/products'}>Products</Link> {`> `}
-                    <Link to={`/products/${product.category.toLowerCase()}`}>{product.category}</Link> {`> `}
-                    <span className="text-primary"> {product.name}</span>
+                    <Link to={'/'} className='hover:font-semibold'>Home</Link> {`> `}
+                    <Link to={'/products'} className='hover:font-semibold'>Products</Link> {`> `}
+                    <Link to={`/products/${product.category.toLowerCase()}`} className='hover:font-semibold'>{product.category}</Link> {`> `}
+                    <span className="text-primary cursor-pointer"> {product.name}</span>
                 </p>
 
                 {/* it will show all the images and click on any image set it as the thumbnail image */}
