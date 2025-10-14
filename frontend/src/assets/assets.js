@@ -197,8 +197,8 @@ export const categories = [
     bgColor: "#F0F5DE",
   },
   {
-    text: "Sauses & Spreads",
-    path: "Sauses & Spreads",
+    text: "Sauces & Spreads",
+    path: "Sauces & Spreads",
     image: sauses_spreads_image,
     bgColor: "#FEE6CD",
   },
