@@ -77,6 +77,20 @@ import instagram_logo from './instagram_logo.svg';
 import x_logo from './x_logo.svg';
 import eye_hide from './eye_hide.svg';
 import eye_show from './eye_show.svg';
+import masala_oil_image from './masala_oil_image.png';
+import sauses_spreads_image from './sauses_spreads_image.png';
+import tea_coffe_healthDrink from './tea_coffe_healthDrink.png';
+import snacks_munchies from './snacks_munchies.png';
+import biscuits_cookies_image from './biscuits_cookies_image.png';
+import chocolates_candies_image from './chocolates_candies_image.png';
+import personal_care_image from './personal_care_image.png';
+import ice_cream_image from './ice_cream_image.png';
+import baby_care_image from './baby_care_image.png';
+import pharma_wellness_image from './pharma_wellness_image.png';
+import cleaning_essentials_image from './cleaning_essentials_image.png';
+import fresheners_repellents_image from './fresheners_repellents_image.png';
+import puja_needs_image from './puja_needs_image.png';
+import kitchen_tools_image from './kitchen_tools_image.png';
 
 const back_link = import.meta.env.VITE_FRONTEND_URL;
 
@@ -116,6 +130,21 @@ export const assets = {
   x_logo,
   eye_hide,
   eye_show,
+  masala_oil_image,
+  sauses_spreads_image,
+  tea_coffe_healthDrink,
+  snacks_munchies,
+  biscuits_cookies_image,
+  chocolates_candies_image,
+  personal_care_image,
+  ice_cream_image,
+  baby_care_image,
+  pharma_wellness_image,
+  cleaning_essentials_image,
+  fresheners_repellents_image,
+  puja_needs_image,
+  kitchen_tools_image,
+
 };
 
 export const categories = [
@@ -132,8 +161,8 @@ export const categories = [
     bgColor: "#FEE0E0",
   },
   {
-    text: "Cold Drinks",
-    path: "Drinks",
+    text: "Cold Drinks & Juices",
+    path: "Cold Drinks & Juices",
     image: bottles_image,
     bgColor: "#F0F5DE",
   },
@@ -151,14 +180,98 @@ export const categories = [
   },
   {
     text: "Bakery & Breads",
-    path: "Bakery",
+    path: "Bakery & Breads",
     image: bakery_image,
     bgColor: "#E0F6FE",
   },
   {
     text: "Grains & Cereals",
-    path: "Grains",
+    path: "Grains & Cereals",
     image: grain_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Masalas & Oils",
+    path: "Masalas & Oils",
+    image: masala_oil_image,
+    bgColor: "#F0F5DE",
+  },
+  {
+    text: "Sauses & Spreads",
+    path: "Sauses & Spreads",
+    image: sauses_spreads_image,
+    bgColor: "#FEE6CD",
+  },
+  {
+    text: "Tea, Coffee & Health Drink",
+    path: "Tea, Coffee & Health Drink",
+    image: tea_coffe_healthDrink,
+    bgColor: "#E0F6FE",
+  },
+  {
+    text: "Snacks & Munchies",
+    path: "Snacks & Munchies",
+    image: snacks_munchies,
+    bgColor: "#FEE0E0",
+  },
+  {
+    text: "Biscuits & Cookies",
+    path: "Biscuits & Cookies",
+    image: biscuits_cookies_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Chocolates & Candies",
+    path: "Chocolates & Candies",
+    image: chocolates_candies_image,
+    bgColor: "#E1F5EC",
+  },
+  {
+    text: "Ice Creams",
+    path: "Ice Creams",
+    image: ice_cream_image,
+    bgColor: "#FEF6DA",
+  },
+  {
+    text: "Personal Care",
+    path: "Personal Care",
+    image: personal_care_image,
+    bgColor: "#FEE0E0",
+  },
+  {
+    text: "Baby Care",
+    path: "Baby Care",
+    image: baby_care_image,
+    bgColor: "#FEF6DA",
+  },
+  {
+    text: "Pharma & Wellness",
+    path: "Pharma & Wellness",
+    image: pharma_wellness_image,
+    bgColor: "#E1F5EC",
+  },
+  {
+    text: "Cleaning Essentials",
+    path: "Cleaning Essentials",
+    image: cleaning_essentials_image,
+    bgColor: "#FEE6CD",
+  },
+  {
+    text: "Freshener & Repellent",
+    path: "Freshener & Repellent",
+    image: fresheners_repellents_image,
+    bgColor: "#F0F5DE",
+  },
+  {
+    text: "Puja Needs",
+    path: "Puja Needs",
+    image: puja_needs_image,
+    bgColor: "#F0F5DE",
+  },
+  {
+    text: "Kitchen Tools",
+    path: "Kitchen Tools",
+    image: kitchen_tools_image,
     bgColor: "#F1E3F9",
   },
 ];
