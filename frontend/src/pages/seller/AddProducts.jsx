@@ -3,6 +3,20 @@ import { assets, categories } from '../../assets/assets'
 import { useAppContext } from '../../context/AppContext'
 import toast from 'react-hot-toast'
 
+// sort the categories array by item.path
+categories.sort((a, b) => {
+  let pathA = a.path;
+  let pathB = b.path;
+
+  if (pathA < pathB) {
+    return -1
+  } else if (pathA > pathB) {
+    return 1
+  } else {
+    return 0
+  }
+})
+
 
 const AddProduct = () => {
 
