@@ -196,3 +196,48 @@ export const logout = async (req, res) => {
         })
     }
 }
+
+// Send Verification OTP to the User's Email : /api/user/send-verify-otp
+export const sendVerifyOtp = async (req, res) => {
+    try {
+        const { userId } = req.body
+        const user = await User.findById(userId)
+        if (user.isAccountVerified) {
+            return res.status(409).json({
+                success: false,
+                message: "Account is already verified"
+            })
+        }
+
+        const otp = String(Math.floor(100000 + Math.random() * 900000))
+        user.verifyOtp = otp
+        user.verifyOtpExpireAt = Date.now() + 24 * 60 * 60 * 1000
+        await user.save()
+
+        // Sending account verify email
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: user.email,
+            subject: "Account Verification OTP",
+            html: EMAIL_VERIFY_TEMPLATE(user.email, otp)
+        }
+
+        try {
+            await transporter.sendMail(mailOptions)
+        } catch (error) {
+            console.log("smtp setup error is --->", error)
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Verification OTP Sent on Email"
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error
+        })
+    }
+}
+
