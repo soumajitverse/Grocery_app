@@ -1,7 +1,8 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import userRouter from './routes/user.route.js'
 import sellerRouter from './routes/seller.route.js'
@@ -10,7 +11,6 @@ import addressRouter from './routes/address.route.js'
 import orderRouter from './routes/order.route.js'
 import cartRouter from './routes/cart.route.js'
 import { stripeWebhooks } from './controllers/order.controller.js'
-dotenv.config()
 
 const port = process.env.PORT || 4000
 const app = express()
