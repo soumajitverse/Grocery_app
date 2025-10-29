@@ -2,7 +2,7 @@ import generateToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
 import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE, WELCOME_TEMPLATE } from "../config/emailTemplates.js"
-import transporter from "../config/nodemailer.js"
+import transporter from "../config/nodeMailer.js"
 
 // Register User : /api/user/register 
 export const register = async (req, res) => {
