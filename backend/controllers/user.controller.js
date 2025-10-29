@@ -295,3 +295,58 @@ export const verifyEmail = async (req, res) => {
         })
     }
 }
+
+
+// Send Password Reset OTP : /api/user/send-reset-otp
+export const sendResetOtp = async (req, res) => {
+    try {
+        const { email } = req.body
+
+        if (!email) {
+            return res.status(400).json({
+                success: true,
+                message: "Email is required"
+            })
+        }
+
+        const user = await User.findOne({ email })
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User doesn't exists"
+            })
+        }
+
+        const otp = String(Math.floor(100000 + Math.random() * 900000))
+        user.resetOtp = otp
+        user.resetOtpExpireAt = Date.now() + 15 * 60 * 1000
+        await user.save()
+
+        // Sending reset password email
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: user.email,
+            subject: "Password Reset OTP",
+            text: `Your OTP for resetting your password is ${otp} (this will only valid only for 15 minutes). Use this OTP to proceed with resetting your password.`,
+            html: PASSWORD_RESET_TEMPLATE(user.email, otp)
+        }
+
+        try {
+            await transporter.sendMail(mailOptions)
+        } catch (error) {
+            console.log("smtp setup error is --->", error)
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Verification OTP Sent on Email"
+        })
+
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: error
+        })
+    }
+}
