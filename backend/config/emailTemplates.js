@@ -16,12 +16,12 @@ export const WELCOME_TEMPLATE = (name, email) => `
             
             <!-- Header -->
             <tr>
-              <td style="background-color:#22D172; text-align:center; padding:25px 10px;">
+              <td style="background-color:#E63946; text-align:center; padding:25px 10px;">
                 <h1 style="margin:0; font-size:26px; font-weight:700; color:#ffffff; letter-spacing:1px;">
                   BASKITO
                 </h1>
-                <p style="margin:5px 0 0; color:#ffffff; font-size:13px;">
-                  Fresh Groceries Delivered to Your Doorstep
+                <p style="margin:5px 0 0; color:#ffeaea; font-size:13px;">
+                  Fresh Groceries, Fast Delivery
                 </p>
               </td>
             </tr>
@@ -30,8 +30,8 @@ export const WELCOME_TEMPLATE = (name, email) => `
             <tr>
               <td style="padding:40px 30px; color:#000000;">
                 
-                <h2 style="margin:0 0 20px; font-size:22px; font-weight:700; text-align:center; color:#333;">
-                  Welcome to <span style="color:#22D172;">BASKITO</span>! 🛒
+                <h2 style="margin:0 0 20px; font-size:22px; font-weight:700; text-align:center; color:#E63946;">
+                  Welcome to <span style="color:#E63946;">BASKITO</span>! 🛒
                 </h2>
 
                 <p style="font-size:15px; line-height:1.7; margin:0 0 15px; text-align:center;">
@@ -39,24 +39,24 @@ export const WELCOME_TEMPLATE = (name, email) => `
                 </p>
 
                 <p style="font-size:14px; line-height:1.6; margin:0 0 20px; text-align:center;">
-                  Your account has been successfully created with this email:
+                  We're excited to have you on board! Your account has been successfully created using this email:
                   <br>
-                  <strong style="color:#4C83EE;">${email}</strong>
+                  <strong style="color:#E63946;">${email}</strong>
                 </p>
 
                 <div style="text-align:center; margin:30px 0;">
                   <a href="https://baskito.vercel.app" 
-                     style="background-color:#22D172; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-weight:bold; font-size:14px; display:inline-block;">
+                     style="background-color:#E63946; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-weight:bold; font-size:14px; display:inline-block;">
                     Start Shopping
                   </a>
                 </div>
 
                 <p style="font-size:13px; line-height:1.6; color:#555; margin:0 0 10px; text-align:center;">
-                  Discover the best deals on fresh fruits, veggies, and daily essentials — all in one place.
+                  Explore the freshest fruits, veggies, and daily essentials delivered right to your doorstep.
                 </p>
 
                 <p style="font-size:13px; line-height:1.6; color:#888; margin-top:30px; text-align:center;">
-                  — The BASKITO Team
+                  — The BASKITO Team ❤️
                 </p>
 
               </td>
@@ -67,7 +67,7 @@ export const WELCOME_TEMPLATE = (name, email) => `
               <td style="background-color:#f0f0f0; text-align:center; padding:15px;">
                 <p style="margin:0; font-size:12px; color:#777;">
                   © ${new Date().getFullYear()} soumajitverse. All rights reserved.<br>
-                  Visit us at <a href="https://baskito.vercel.app" style="color:#22D172; text-decoration:none;">baskito.vercel.app</a>
+                  Visit us at <a href="https://grocery-app-flax-five.vercel.app" style="color:#E63946; text-decoration:none;">baskito.vercel.app</a>
                 </p>
               </td>
             </tr>
