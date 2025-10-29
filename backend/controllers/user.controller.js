@@ -1,7 +1,8 @@
 import generateToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
-
+import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE, WELCOME_TEMPLATE } from "../config/emailTemplates.js"
+import transporter from "../config/nodemailer.js"
 
 // Register User : /api/user/register 
 export const register = async (req, res) => {
@@ -51,6 +52,20 @@ export const register = async (req, res) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // CSRF protection
             maxAge: 7 * 24 * 60 * 60 * 1000 // this is cookie expiration time and this is always be written in milisecond. 
         })
+
+        // Sending welcome email
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: email,
+            subject: "Welcome to BASKITO 🛒",
+            html: WELCOME_TEMPLATE(name, email)
+        }
+
+        try {
+            await transporter.sendMail(mailOptions)
+        } catch (error) {
+            console.log("smtp setup error is --->", error)
+        }
 
         return res.status(201).json({
             success: true,
