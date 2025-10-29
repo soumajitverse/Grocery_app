@@ -197,6 +197,7 @@ export const logout = async (req, res) => {
     }
 }
 
+
 // Send Verification OTP to the User's Email : /api/user/send-verify-otp
 export const sendVerifyOtp = async (req, res) => {
     try {
@@ -241,3 +242,56 @@ export const sendVerifyOtp = async (req, res) => {
     }
 }
 
+
+// Verify account by the OTP : /api/user/verify-account
+export const verifyEmail = async (req, res) => {
+    try {
+        const { userId, otp } = req.body
+        if (!userId || !otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Give all the details"
+            })
+        }
+
+        const user = await User.findById(userId)
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User doesn't exists"
+            })
+        }
+
+        if (user.verifyOtp === '' || user.verifyOtp !== otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid OTP"
+            })
+        }
+
+        if (user.verifyOtpExpireAt < Date.now()) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid OTP"
+            })
+        }
+
+        user.isAccountVerified = true
+        user.verifyOtp = ''
+        user.verifyOtpExpireAt = 0
+
+        await user.save()
+
+        return res.status(200).json({
+            success: true,
+            message: "Email verified successfully"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            success: false,
+            message: error
+        })
+    }
+}
