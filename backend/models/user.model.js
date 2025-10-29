@@ -26,6 +26,36 @@ const userSchema = new mongoose.Schema({
     cartItems: {
         type: Object,
         default: {},
+    },
+
+    // otp for email verify
+    verifyOtp: {
+        type: String,
+        default: ''
+    },
+
+    // email verfication otp expiary time
+    verifyOtpExpireAt: {
+        type: Number,
+        default: 0
+    },
+
+    // email acc is verfied or not
+    isAccountVerified: {
+        type: Boolean,
+        default: false
+    },
+
+    // reset pass otp
+    resetOtp: {
+        type: String,
+        default: ''
+    },
+
+    // reset pass otp expiary time
+    resetOtpExpireAt: {
+        type: Number,
+        default: 0
     }
 }, {
     // Do not remove empty objects (so cartItems:{} stays in DB)
