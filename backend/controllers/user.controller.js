@@ -74,7 +74,7 @@ export const register = async (req, res) => {
                 email,
                 name
             },
-            message:`Email sent successfully to ${email}. If you don't see it in your inbox, please check your spam or promotions folder.`
+            message: `Email sent successfully to ${email}. Please check your inbox — if you don’t see it, check your spam or promotions folder.`
         })
 
     } catch (error) {
@@ -217,23 +217,16 @@ export const sendVerifyOtp = async (req, res) => {
         user.verifyOtpExpireAt = Date.now() + 24 * 60 * 60 * 1000
         await user.save()
 
-        // Sending account verify email
-        const mailOptions = {
-            from: process.env.SENDER_EMAIL,
-            to: user.email,
-            subject: "Account Verification OTP",
-            html: EMAIL_VERIFY_TEMPLATE(user.email, otp)
-        }
-
+        // Sending email by sendgrid
         try {
-            await transporter.sendMail(mailOptions)
+            await sendEmail(user.email, "Account Verification OTP", EMAIL_VERIFY_TEMPLATE(user.email, otp))
         } catch (error) {
-            console.log("smtp setup error is --->", error)
+            console.log("sendgrid error ---> ", error)
         }
 
         return res.status(200).json({
             success: true,
-            message: "Verification OTP Sent on Email"
+            message: `Verification OTP sent successfully to ${user.email}. Please check your inbox — if you don’t see it, check your spam or promotions folder.`
         })
 
     } catch (error) {
