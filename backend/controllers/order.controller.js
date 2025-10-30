@@ -230,7 +230,7 @@ export const stripeWebhooks = async (request, response) => {
             await Promise.all(
                 items.map(async (item) => {
                     console.log("online orde item---> ", item)
-                    const product = await Product.findById(item._id) // find the product detail from products collection by id
+                    const product = await Product.findById(item.product) // find the product detail from products collection by id
                     console.log(product)
                     let amount = product.offerPrice * item.quantity // the amount for each products i.e., product_price * product_quantity
 
