@@ -318,19 +318,11 @@ export const sendResetOtp = async (req, res) => {
         user.resetOtpExpireAt = Date.now() + 15 * 60 * 1000
         await user.save()
 
-        // Sending reset password email
-        const mailOptions = {
-            from: process.env.SENDER_EMAIL,
-            to: user.email,
-            subject: "Password Reset OTP",
-            text: `Your OTP for resetting your password is ${otp} (this will only valid only for 15 minutes). Use this OTP to proceed with resetting your password.`,
-            html: PASSWORD_RESET_TEMPLATE(user.email, otp)
-        }
-
+        // Sending email by sendgrid
         try {
-            await transporter.sendMail(mailOptions)
+            await sendEmail(user.email, "Password Reset OTP", PASSWORD_RESET_TEMPLATE(user.email, otp))
         } catch (error) {
-            console.log("smtp setup error is --->", error)
+            console.log("sendgrid error ---> ", error)
         }
 
         return res.status(200).json({
