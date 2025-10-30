@@ -19,7 +19,7 @@ import ProductList from './pages/seller/ProductList';
 import Orders from './pages/seller/Orders';
 import Loading from './components/Loading'
 import ContactUs from './pages/ContactUs'
-import VerifyEmail from './components/verifyEmail'
+import VerifyEmail from './components/VerifyEmail'
 
 
 
