@@ -215,23 +215,19 @@ export const stripeWebhooks = async (request, response) => {
 
             // Updating the DB by making the payment status : paid using the orderId
             let order = await Order.findByIdAndUpdate(orderId, { isPaid: true }, { new: true })
-            console.log("online order---> ", order)
             // clear the cart data after order successfull
             let user = await User.findByIdAndUpdate(userId, { cartItems: {} }, { new: true })
-            console.log("online user---> ", user)
 
             // extracting name and emai from user
             let { name, email } = user
 
             let prods = [] // array of products
             let { items } = order // extracting ordered items from order
-            console.log("online order items---> ", items)
 
             await Promise.all(
                 items.map(async (item) => {
                     console.log("online orde item---> ", item)
                     const product = await Product.findById(item.product) // find the product detail from products collection by id
-                    console.log(product)
                     let amount = product.offerPrice * item.quantity // the amount for each products i.e., product_price * product_quantity
 
                     // adding product name, quantity and (price * item Quantity)
@@ -243,8 +239,6 @@ export const stripeWebhooks = async (request, response) => {
                 })
             )
 
-            console.log("online prod ---> ", prods)
-
             // Sending email by sendgrid
             try {
                 await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
@@ -253,7 +247,7 @@ export const stripeWebhooks = async (request, response) => {
                 break
             }
 
-            return res.status(200).json({
+            return response.status(200).json({
                 success: true,
                 message: "Order Placed Successfully"
             })
