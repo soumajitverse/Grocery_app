@@ -19,6 +19,7 @@ import ProductList from './pages/seller/ProductList';
 import Orders from './pages/seller/Orders';
 import Loading from './components/Loading'
 import ContactUs from './pages/ContactUs'
+import VerifyEmail from './components/verifyEmail'
 
 
 
@@ -40,7 +41,9 @@ const App = () => {
     removeFromCart,
     cartItems,
     searchQuery,
-    setSearchQuery } = useAppContext()
+    setSearchQuery,
+    showVerifyEmail,
+  } = useAppContext()
 
   return (
     <div className='text-default min-h-screen text-gray-700 bg-white'>
@@ -48,7 +51,7 @@ const App = () => {
       {/* if it is seller dashboard then navbar will not be visible */}
       {isSellerPath ? null : <Navbar />}
       {showUserLogin ? <Login /> : null}
-
+      {showVerifyEmail ? <VerifyEmail /> : null}
       <Toaster />
 
       <Routes>

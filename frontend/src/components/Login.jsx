@@ -23,7 +23,8 @@ const Login = () => {
         getCartCount,
         getCartAmount,
         axios,
-        fetchProducts, fetchUserStatus
+        fetchProducts,
+        fetchUserStatus
     } = useAppContext()
 
     const [state, setState] = useState("login");

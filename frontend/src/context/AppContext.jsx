@@ -28,6 +28,8 @@ export const AppContextProvider = ({ children }) => {
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState({})
     const [searchQuery, setSearchQuery] = useState({})
+    const [accVerified, setAccVerified] = useState(false)
+    const [showVerifyEmail, setShowVerifyEmail] = useState(false)
 
 
     // Fetch Seller Status (Check Login or not)
@@ -49,6 +51,7 @@ export const AppContextProvider = ({ children }) => {
             const { data } = await axios.get('/api/user/is-auth')
             if (data.success) {
                 setUser(data.user)
+                setAccVerified(data.user.isAccountVerified)
                 setCartItems(data.user.cartItems)
             }
         } catch (error) {
@@ -151,6 +154,21 @@ export const AppContextProvider = ({ children }) => {
 
     }, [cartItems])
 
+    // function to send email after pressing verify account
+    const verifyAccEmail = async () => {
+        try {
+            const { data } = await axios.post('/api/user/send-verify-otp')
+            if (!data.success) {
+                console.log(data.message)
+            }
+            toast.success(data.message)
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
+
     const value = {
         currency,
         navigate,
@@ -172,7 +190,12 @@ export const AppContextProvider = ({ children }) => {
         getCartAmount,
         axios,
         fetchProducts,
-        fetchUserStatus
+        fetchUserStatus,
+        accVerified,
+        setAccVerified,
+        showVerifyEmail,
+        setShowVerifyEmail,
+        verifyAccEmail
     }
 
     return (

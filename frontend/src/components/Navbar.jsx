@@ -27,7 +27,12 @@ const Navbar = () => {
         getCartAmount,
         axios,
         fetchProducts,
-        setCartItems
+        setCartItems,
+        accVerified,
+        setAccVerified,
+        showVerifyEmail,
+        setShowVerifyEmail,
+        verifyAccEmail
     } = useAppContext()
 
     // function to logout
@@ -98,6 +103,13 @@ const Navbar = () => {
                             <img className='w-10' src={assets.profile_icon} alt="profile" />
 
                             <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm z-40'>
+                                {!accVerified && (<li
+                                    onClick={() => {
+                                        setShowVerifyEmail(true)
+                                        verifyAccEmail()
+                                    }}
+                                    className='p-1.5 pl-3 
+                        hover:bg-primary/10 cursor-pointer'>Verify Email</li>)}
                                 <li
                                     onClick={() => { navigate('my-orders') }}
                                     className='p-1.5 pl-3 
@@ -136,6 +148,15 @@ const Navbar = () => {
 
                 <NavLink to='/contact' onClick={() => setOpen(false)}>Contact</NavLink>
 
+                {!accVerified && (<div
+                    onClick={() => {
+                        setShowVerifyEmail(true)
+                        verifyAccEmail()
+                        setOpen(false)
+                    }}
+                >Verify Email</div>)}
+
+
                 {/* login and logout*/}
                 {/* if user is logged in then it will show the logout button and if the user is not logged in then it will show the login button */}
                 {!user ?
@@ -147,15 +168,15 @@ const Navbar = () => {
                         className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
                         Login
                     </button>) :
-                    (<button
-                        onClick={() => {
-                            setOpen(false)
-                            logout()
-                        }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
-                        Logout
-                    </button>)
+                    (
+                        <button
+                            onClick={() => {
+                                setOpen(false)
+                                logout()
+                            }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
+                            Logout
+                        </button>)
                 }
-
 
             </div>
             )}
