@@ -53,14 +53,6 @@ export const register = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000 // this is cookie expiration time and this is always be written in milisecond. 
         })
 
-        // Sending welcome email
-        const mailOptions = {
-            from: process.env.SENDER_EMAIL,
-            to: email,
-            subject: "Welcome to BASKITO 🛒",
-            html: WELCOME_TEMPLATE(name, email)
-        }
-
         // Sending email by sendgrid
         try {
             await sendEmail(email, "Welcome to BASKITO 🛒", WELCOME_TEMPLATE(name, email))
