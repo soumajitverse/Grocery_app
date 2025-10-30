@@ -250,7 +250,7 @@ export const verifyEmail = async (req, res) => {
             })
         }
 
-        if (user.verifyOtp === '' || user.verifyOtp !== otp) {
+        if (user.verifyOtp == '' || user.verifyOtp != otp) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid OTP"
@@ -352,7 +352,7 @@ export const resetPassword = async (req, res) => {
             })
         }
 
-        if (user.resetOtp === "" || user.resetOtp !== otp) {
+        if (user.resetOtp == "" || user.resetOtp != otp) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid OTP"
