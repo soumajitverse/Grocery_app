@@ -2,7 +2,7 @@ import generateToken from "../config/token.js"
 import User from "../models/user.model.js"
 import bcrypt from 'bcryptjs'
 import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE, WELCOME_TEMPLATE } from "../config/emailTemplates.js"
-import transporter from "../config/nodeMailer.js"
+import { sendEmail } from "../config/sendgrid.js"
 
 // Register User : /api/user/register 
 export const register = async (req, res) => {
@@ -61,10 +61,11 @@ export const register = async (req, res) => {
             html: WELCOME_TEMPLATE(name, email)
         }
 
+        // Sending email by sendgrid
         try {
-            await transporter.sendMail(mailOptions)
+            await sendEmail(email, "Welcome to BASKITO 🛒", WELCOME_TEMPLATE(name, email))
         } catch (error) {
-            console.log("smtp setup error is --->", error)
+            console.log("sendgrid error ---> ", error)
         }
 
         return res.status(201).json({
@@ -72,7 +73,8 @@ export const register = async (req, res) => {
             user: {
                 email,
                 name
-            }
+            },
+            message:`Email sent successfully to ${email}. If you don't see it in your inbox, please check your spam or promotions folder.`
         })
 
     } catch (error) {
