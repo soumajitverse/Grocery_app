@@ -1,9 +1,11 @@
+import { ORDER_CONFIRMATION_TEMPLATE } from "../config/emailTemplates.js"
+import { sendEmail } from "../config/sendgrid.js"
 import Order from "../models/order.model.js"
 import Product from "../models/product.model.js"
 import User from "../models/user.model.js"
 import Stripe from "stripe"
 
-// Place Order COD : /api/order/cod
+// Place Order COD and send Order confirmation mail : /api/order/cod
 export const placeOrderCOD = async (req, res) => {
     try {
         const { userId, items, address } = req.body
@@ -14,13 +16,24 @@ export const placeOrderCOD = async (req, res) => {
             })
         }
 
+        let prods = [] // array of products
+
         // Calculate Amount Using Items 
 
         // it stores all the amounts for each products in an array
         let individualAmounts = await Promise.all(
             items.map(async (item) => {
                 const product = await Product.findById(item.product) // find the product document from products collection by id
-                return (product.offerPrice * item.quantity) // it return the amount for each products i.e., product_price * product_quantity
+                let amount = product.offerPrice * item.quantity // the amount for each products i.e., product_price * product_quantity
+
+                // adding product name, quantity and (price * item Quantity)
+                prods.push({
+                    name: product.name,
+                    quantity: item.quantity,
+                    price: amount
+                })
+
+                return amount // it return the amount for each products i.e., product_price * product_quantity
             })
         )
 
@@ -31,13 +44,23 @@ export const placeOrderCOD = async (req, res) => {
         amount += Math.round(amount * 0.02)
 
 
-        await Order.create({
+        const order = await Order.create({
             userId,
             items,
             amount,
             address,
             paymentType: "COD"
         })
+
+        // finding user's name by user Id
+        let { name, email } = await User.findById(userId)
+
+        // Sending email by sendgrid
+        try {
+            await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, "COD"))
+        } catch (error) {
+            console.log("sendgrid error ---> ", error)
+        }
 
         return res.status(200).json({
             success: true,
