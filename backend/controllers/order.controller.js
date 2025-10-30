@@ -52,12 +52,12 @@ export const placeOrderCOD = async (req, res) => {
             paymentType: "COD"
         })
 
-        // finding user's name by user Id
+        // finding user's name and email by user Id
         let { name, email } = await User.findById(userId)
 
         // Sending email by sendgrid
         try {
-            await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, "COD"))
+            await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
         } catch (error) {
             console.log("sendgrid error ---> ", error)
         }
@@ -214,12 +214,43 @@ export const stripeWebhooks = async (request, response) => {
             const { orderId, userId } = session.data[0].metadata
 
             // Updating the DB by making the payment status : paid using the orderId
-            await Order.findByIdAndUpdate(orderId, { isPaid: true })
+            let order = await Order.findByIdAndUpdate(orderId, { isPaid: true }, { new: true })
 
             // clear the cart data after order successfull
-            await User.findByIdAndUpdate(userId, { cartItems: {} })
+            let user = await User.findByIdAndUpdate(userId, { cartItems: {} }, { new: true })
 
-            break;
+            // extracting name and emai from user
+            let { name, email } = user
+
+            let prods = [] // array of products
+            let { items } = order // extracting ordered items from order
+
+            await Promise.all(
+                items.map(async (item) => {
+                    const product = await Product.findById(item._id) // find the product detail from products collection by id
+                    let amount = product.offerPrice * item.quantity // the amount for each products i.e., product_price * product_quantity
+
+                    // adding product name, quantity and (price * item Quantity)
+                    prods.push({
+                        name: product.name,
+                        quantity: item.quantity,
+                        price: amount
+                    })
+                })
+            )
+
+            // Sending email by sendgrid
+            try {
+                await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
+            } catch (error) {
+                console.log("sendgrid error ---> ", error)
+                break
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: "Order Placed Successfully"
+            })
         }
 
         case 'payment_intent.payment_failed': {
