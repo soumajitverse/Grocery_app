@@ -29,47 +29,36 @@ const VerifyEmail = () => {
     };
 
     return (
-        <div
-            onClick={() => setShowVerifyEmail(false)}
-            className="fixed inset-0 z-30 flex items-center justify-center bg-black/50"
-        >
-            <form
-                onClick={(e) => e.stopPropagation()}
-                onSubmit={onSubmitHandler}
-                className="bg-white w-[90%] max-w-sm p-8 rounded-2xl shadow-2xl border border-gray-100 flex flex-col gap-6 relative"
-            >
-                <h2 className="text-2xl font-semibold text-center text-gray-800">
-                    <span className="text-primary">Email</span> Verification
-                </h2>
+        <div onClick={() => setShowVerifyEmail(false)} className='fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center text-sm text-gray-600 bg-black/50'>
 
-                <div className="text-center text-gray-600 text-sm leading-relaxed">
-                    <p>Enter the 6-digit code sent to your email address.</p>
-                    <p className="text-xs mt-1">
-                        Didn’t receive it? Check your spam or promotions folder.
+            <form onSubmit={onSubmitHandler} onClick={(e) => e.stopPropagation()} className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[370px] rounded-lg shadow-xl border border-gray-200 bg-white">
+
+                <p className="text-2xl font-medium m-auto">
+                    <span className="text-primary">Email</span> Verification
+                </p>
+
+                <div className='w-full'>
+                    <div className='w-full text-sm text-center'>
+                        Enter the 6-digit code sent to your email.
+                        <div className='text-xs'>Didn’t receive it? Check your spam or promotions folder.</div>
+                    </div>
+                    <div className='mt-3 font-medium'>Enter the OTP below</div>
+                    <input maxLength={6}
+                        onChange={(e) => setOtp(e.target.value)} value={otp} placeholder="6-digit OTP" className="border border-gray-200 rounded w-full p-2  outline-primary mt-1" type="text" required />
+                </div>
+
+                <button className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 rounded-md cursor-pointer mt-1">
+                    Submit
+                </button>
+
+                <div className="w-full flex justify-center">
+                    <p className="text-xs text-center text-gray-500 "
+                        onClick={verifyAccEmail}
+                    >
+                        Having trouble? <span className="text-primary cursor-pointer hover:underline">Resend code</span>
                     </p>
                 </div>
 
-                <input
-                    type="text"
-                    placeholder="Enter OTP"
-                    maxLength="6"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="text-center tracking-widest text-lg border rounded-lg py-3 focus:ring-2 focus:ring-primary focus:outline-none w-full transition-all"
-                />
-
-                <button
-                    type="submit"
-                    className="bg-primary hover:bg-primary-dull text-white py-3 rounded-lg font-medium text-lg transition-all shadow-md hover:shadow-lg"
-                >
-                    Verify Email
-                </button>
-
-                <p className="text-xs text-center text-gray-500 mt-2"
-                    onClick={verifyAccEmail}
-                >
-                    Having trouble? <span className="text-primary cursor-pointer hover:underline">Resend code</span>
-                </p>
             </form>
         </div>
     );
