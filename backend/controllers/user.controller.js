@@ -319,7 +319,7 @@ export const sendResetOtp = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: "Verification OTP Sent on Email"
+            message: "OTP sent to your email."
         })
 
     } catch (error) {
