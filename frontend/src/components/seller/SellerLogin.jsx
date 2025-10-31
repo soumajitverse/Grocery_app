@@ -7,23 +7,9 @@ import { assets } from '../../assets/assets.js'
 const SellerLogin = () => {
 
     const {
-        currency,
         navigate,
-        user,
-        setUser,
         isSeller,
         setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
         axios } = useAppContext()
 
     const [email, setEmail] = useState("");

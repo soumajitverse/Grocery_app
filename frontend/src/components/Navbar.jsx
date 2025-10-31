@@ -8,29 +8,16 @@ import toast from 'react-hot-toast'
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const {
-        currency,
         navigate,
         user,
         setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
         setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
         searchQuery,
         setSearchQuery,
         getCartCount,
-        getCartAmount,
         axios,
-        fetchProducts,
         setCartItems,
         accVerified,
-        setAccVerified,
-        showVerifyEmail,
         setShowVerifyEmail,
         verifyAccEmail
     } = useAppContext()

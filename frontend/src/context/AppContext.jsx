@@ -169,20 +169,6 @@ export const AppContextProvider = ({ children }) => {
         }
     }
 
-    // // function to send reset otp after pressing submit in Reset Password
-    // const resetPass = async (email) => {
-    //     try {
-    //         const { data } = await axios.post('/api/user/send-reset-otp', { email })
-    //         if (!data.success) {
-    //             console.log(data.message)
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //         toast.error(error.message)
-    //     }
-    // }
-
-
     const value = {
         currency,
         navigate,

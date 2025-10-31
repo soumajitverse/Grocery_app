@@ -28,24 +28,11 @@ const App = () => {
 
   const isSellerPath = useLocation().pathname.includes("seller") // if the url path contains the seller then we are in the seller dashboard
 
-  const { currency,
-    navigate,
-    user,
-    setUser,
+  const {
     isSeller,
-    setIsSeller,
     showUserLogin,
-    setShowUserLogin,
-    products,
-    addToCart,
-    updateCartItem,
-    removeFromCart,
-    cartItems,
-    searchQuery,
-    setSearchQuery,
     showVerifyEmail,
     showResetNewPass,
-    setShowResetNewPass
   } = useAppContext()
 
   return (

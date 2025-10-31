@@ -2,28 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
-import { assets } from '../assets/assets.js';
+
 const ResetNewPass = () => {
-    const { currency,
-        navigate,
-        user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
+    const {
         setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
         axios,
-        fetchProducts,
-        fetchUserStatus,
         showResetNewPass,
         setShowResetNewPass,
         resetPassEmail,

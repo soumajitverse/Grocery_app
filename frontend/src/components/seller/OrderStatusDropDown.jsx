@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { assets } from '../../assets/assets';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../../context/AppContext';
@@ -9,27 +9,7 @@ const OrderStatusDropDown = ({ orderId, curr_status }) => {
     const [status, setStatus] = useState(curr_status)
 
     const {
-        currency,
-        navigate,
-        user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        setCartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
         axios,
-        fetchProducts,
-        fetchUserStatus
     } = useAppContext()
 
     // Function to select handle

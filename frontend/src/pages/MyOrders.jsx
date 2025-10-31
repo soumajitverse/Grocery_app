@@ -9,24 +9,8 @@ const MyOrders = () => {
     const { currency,
         navigate,
         user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        setCartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
-        axios,
-        fetchProducts,
-        fetchUserStatus } = useAppContext()
+        axios
+    } = useAppContext()
 
     // function to fetch individual user orders
     const fetchMyOrders = async () => {

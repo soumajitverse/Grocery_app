@@ -5,24 +5,11 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const SellerLayout = () => {
-    const { currency,
+    const {
         navigate,
-        user,
-        setUser,
-        isSeller,
         setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
-        axios } = useAppContext()
+        axios
+    } = useAppContext()
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon },
@@ -31,17 +18,17 @@ const SellerLayout = () => {
     ];
 
     const logout = async () => {
-         const { data } = await axios.get('api/seller/logout')
-         try {
-            if(data.success){
-            toast.success(data.message)
-            setIsSeller(false)
-            navigate('/')
-         }
-         } catch (error) {
+        const { data } = await axios.get('api/seller/logout')
+        try {
+            if (data.success) {
+                toast.success(data.message)
+                setIsSeller(false)
+                navigate('/')
+            }
+        } catch (error) {
             console.log(error)
-         }
-         
+        }
+
     }
 
 
@@ -80,7 +67,7 @@ const SellerLayout = () => {
                         </NavLink>
                     ))}
                 </div>
-                <Outlet/>
+                <Outlet />
             </div>
 
         </>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react';
 import { assets } from '../assets/assets';
 import { useAppContext } from '../context/AppContext';
 
@@ -8,19 +7,9 @@ const ProductCard = ({ product }) => {
     const {
         currency,
         navigate,
-        user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
-        products,
         addToCart,
-        updateCartItem,
         removeFromCart,
         cartItems,
-        searchQuery,
-        setSearchQuery
     } = useAppContext()
 
     // when product is available then it will only show this component

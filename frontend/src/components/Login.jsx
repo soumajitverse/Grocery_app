@@ -5,25 +5,11 @@ import toast from 'react-hot-toast';
 import { assets } from '../assets/assets.js';
 const Login = () => {
 
-    const { currency,
+    const { 
         navigate,
-        user,
         setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
         setShowUserLogin,
-        products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery,
-        getCartCount,
-        getCartAmount,
         axios,
-        fetchProducts,
         fetchUserStatus,
         setShowResetNewPass
     } = useAppContext()

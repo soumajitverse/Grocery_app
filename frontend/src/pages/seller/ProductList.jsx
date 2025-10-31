@@ -6,22 +6,7 @@ const ProductList = () => {
 
   const {
     currency,
-    navigate,
-    user,
-    setUser,
-    isSeller,
-    setIsSeller,
-    showUserLogin,
-    setShowUserLogin,
     products,
-    addToCart,
-    updateCartItem,
-    removeFromCart,
-    cartItems,
-    searchQuery,
-    setSearchQuery,
-    getCartCount,
-    getCartAmount,
     fetchProducts,
     axios
   } = useAppContext()

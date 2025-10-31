@@ -8,19 +8,9 @@ const ProductDetails = () => {
 
     const { currency,
         navigate,
-        user,
-        setUser,
-        isSeller,
-        setIsSeller,
-        showUserLogin,
-        setShowUserLogin,
         products,
-        addToCart,
-        updateCartItem,
-        removeFromCart,
-        cartItems,
-        searchQuery,
-        setSearchQuery } = useAppContext()
+        addToCart
+    } = useAppContext()
 
     const { id } = useParams()
     const [realtedProducts, setRealtedProducts] = useState([]);
