@@ -9,7 +9,8 @@ const VerifyEmail = () => {
         setShowUserLogin,
         verifyAccEmail,
         showVerifyEmail,
-        setShowVerifyEmail
+        setShowVerifyEmail,
+        fetchUserStatus
     } = useAppContext();
 
     const onSubmitHandler = async (event) => {
@@ -19,6 +20,9 @@ const VerifyEmail = () => {
                 otp: Number(otp),
             });
             toast.success(data.message);
+            setShowVerifyEmail(false)
+            fetchUserStatus()
+
         } catch (error) {
             toast.error(error.response?.data?.message || "Verification failed");
         }
