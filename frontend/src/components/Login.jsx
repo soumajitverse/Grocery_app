@@ -24,7 +24,8 @@ const Login = () => {
         getCartAmount,
         axios,
         fetchProducts,
-        fetchUserStatus
+        fetchUserStatus,
+        setShowResetNewPass
     } = useAppContext()
 
     const [state, setState] = useState("login");
@@ -98,18 +99,29 @@ const Login = () => {
                     </div>
                 </div>
 
-                {state === "register" ? (
-                    <p>
-                        Already have account? <span onClick={() => setState("login")} className="text-primary cursor-pointer">click here</span>
-                    </p>
-                ) : (
-                    <p>
-                        Create an account? <span onClick={() => setState("register")} className="text-primary cursor-pointer">click here</span>
-                    </p>
-                )}
+                {state === 'register' ? <div></div> : <div className="text-primary cursor-pointer hover:underline"
+                    onClick={() => {
+                        setShowUserLogin(false)
+                        setShowResetNewPass("reset-pass")
+                    }}
+                >Forgot password?</div>}
+
                 <button className="bg-primary hover:bg-primary-dull transition-all text-white w-full py-2 rounded-md cursor-pointer">
                     {state === "register" ? "Create Account" : "Login"}
                 </button>
+
+                <div className='w-full flex justify-center'>
+                    {state === "register" ? (
+                        <p>
+                            Already have account?<span onClick={() => setState("login")} className="text-primary cursor-pointer hover:underline"> click here</span>
+                        </p>
+                    ) : (
+                        <p>
+                            Don't have an account?<span onClick={() => setState("register")} className="text-primary cursor-pointer hover:underline"> click here</span>
+                        </p>
+                    )}
+                </div>
+
             </form>
         </div>
     )
