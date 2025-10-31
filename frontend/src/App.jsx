@@ -20,6 +20,7 @@ import Orders from './pages/seller/Orders';
 import Loading from './components/Loading'
 import ContactUs from './pages/ContactUs'
 import VerifyEmail from './components/VerifyEmail'
+import ResetNewPass from './components/ResetNewPass'
 
 
 
@@ -43,6 +44,8 @@ const App = () => {
     searchQuery,
     setSearchQuery,
     showVerifyEmail,
+    showResetNewPass,
+    setShowResetNewPass
   } = useAppContext()
 
   return (
@@ -52,6 +55,7 @@ const App = () => {
       {isSellerPath ? null : <Navbar />}
       {showUserLogin ? <Login /> : null}
       {showVerifyEmail ? <VerifyEmail /> : null}
+      {showResetNewPass ? <ResetNewPass /> : null}
       <Toaster />
 
       <Routes>
