@@ -135,7 +135,7 @@ const Navbar = () => {
 
                 <NavLink to='/contact' onClick={() => setOpen(false)}>Contact</NavLink>
 
-                {!accVerified && (<div
+                {user && !accVerified && (<div
                     onClick={() => {
                         setShowVerifyEmail(true)
                         verifyAccEmail()
