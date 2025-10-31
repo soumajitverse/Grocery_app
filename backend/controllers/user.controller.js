@@ -55,7 +55,7 @@ export const register = async (req, res) => {
 
         // Sending email by sendgrid
         try {
-            await sendEmail(email, "Welcome to BASKITO 🛒", WELCOME_TEMPLATE(name, email))
+            sendEmail(email, "Welcome to BASKITO 🛒", WELCOME_TEMPLATE(name, email))
         } catch (error) {
             console.log("sendgrid error ---> ", error)
         }

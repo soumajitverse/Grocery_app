@@ -57,7 +57,7 @@ export const placeOrderCOD = async (req, res) => {
 
         // Sending email by sendgrid
         try {
-            await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
+            sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
         } catch (error) {
             console.log("sendgrid error ---> ", error)
         }
@@ -240,7 +240,7 @@ export const stripeWebhooks = async (request, response) => {
 
             // Sending email by sendgrid
             try {
-                await sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
+                sendEmail(email, "🧺 Your BASKITO Order Has Been Confirmed!", ORDER_CONFIRMATION_TEMPLATE(name, order._id, order.amount, prods, order.paymentType))
             } catch (error) {
                 console.log("sendgrid error ---> ", error)
                 break
