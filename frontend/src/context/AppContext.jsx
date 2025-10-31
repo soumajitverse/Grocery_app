@@ -30,7 +30,8 @@ export const AppContextProvider = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState({})
     const [accVerified, setAccVerified] = useState(false)
     const [showVerifyEmail, setShowVerifyEmail] = useState(false)
-
+    const [showResetNewPass, setShowResetNewPass] = useState(null)
+    const [resetPassEmail, setResetPassEmail] = useState('')
 
     // Fetch Seller Status (Check Login or not)
     const fetchSellerStatus = async () => {
@@ -168,6 +169,19 @@ export const AppContextProvider = ({ children }) => {
         }
     }
 
+    // // function to send reset otp after pressing submit in Reset Password
+    // const resetPass = async (email) => {
+    //     try {
+    //         const { data } = await axios.post('/api/user/send-reset-otp', { email })
+    //         if (!data.success) {
+    //             console.log(data.message)
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //         toast.error(error.message)
+    //     }
+    // }
+
 
     const value = {
         currency,
@@ -195,7 +209,12 @@ export const AppContextProvider = ({ children }) => {
         setAccVerified,
         showVerifyEmail,
         setShowVerifyEmail,
-        verifyAccEmail
+        verifyAccEmail,
+        showResetNewPass,
+        setShowResetNewPass,
+        resetPassEmail, 
+        setResetPassEmail
+        // resetPass
     }
 
     return (
