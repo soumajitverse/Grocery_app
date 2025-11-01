@@ -133,8 +133,6 @@ const Navbar = () => {
                 {/* if user is logged in then only it will show my orders otherwise not */}
                 {user && <NavLink to='/my-orders' onClick={() => setOpen(false)}>My Orders</NavLink>}
 
-                <NavLink to='/contact' onClick={() => setOpen(false)}>Contact</NavLink>
-
                 {user && !accVerified && (<div
                     onClick={() => {
                         setShowVerifyEmail(true)
@@ -142,7 +140,7 @@ const Navbar = () => {
                         setOpen(false)
                     }}
                 >Verify Email</div>)}
-
+                <NavLink to='/contact' onClick={() => setOpen(false)}>Contact</NavLink>
 
                 {/* login and logout*/}
                 {/* if user is logged in then it will show the logout button and if the user is not logged in then it will show the login button */}
