@@ -9,7 +9,6 @@ import axios from "axios"
 // so you don't have to repeat the full backend URL in every request.
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
-
 // Allow axios to include cookies (e.g., session tokens) in every request.
 // Useful for authentication when the backend relies on cookies for user sessions.
 // ensures cookies are sent + saved
