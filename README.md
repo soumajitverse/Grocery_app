@@ -488,7 +488,7 @@ The application integrates **SendGrid** for sending transactional emails across 
 
 - Triggered when user registers a new account
 - Contains 6-digit OTP for email verification
-- OTP valid for 10 minutes (configurable)
+- OTP valid for 15 minutes
 - User must verify email before account activation
 - Professional HTML email template with branding
 
@@ -520,7 +520,7 @@ The application integrates **SendGrid** for sending transactional emails across 
 
 - Sent when user requests password reset (logged out)
 - Contains 6-digit OTP for password reset verification
-- OTP valid for 10 minutes
+- OTP valid for 15 minutes
 - Secure password reset flow prevents unauthorized access
 - User must verify OTP before resetting password
 
