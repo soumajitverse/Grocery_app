@@ -660,7 +660,7 @@ VITE_FRONTEND_URL=https://grocery-app-flax-five.vercel.app
 ### SendGrid Configuration
 
 1. Sign up for SendGrid account
-2. Create and verify sender email address (Domain Authentication recommended)
+2. Create and verify sender email address
 3. Generate API key with Mail Send Full Access permissions
 4. Store API key in `SENDGRID_API_KEY` environment variable
 5. Store verified sender email in `SENDGRID_FROM_EMAIL` environment variable
