@@ -290,8 +290,8 @@ export const EMAIL_VERIFY_TEMPLATE = (email, otp) => {
                             </td>
                             <td>
                               <p style="margin:0; font-size:14px; color:#2e7d32; line-height:1.6;">
-                                <strong>Valid for 24 hours</strong><br>
-                                <span style="font-size:13px; color:#558b2f;">This code will expire in 24 hours for security reasons.</span>
+                                <strong>Valid for 15 minutes</strong><br>
+                                <span style="font-size:13px; color:#558b2f;">This code will expire in 15 minutes for security reasons.</span>
                               </p>
                             </td>
                           </tr>
