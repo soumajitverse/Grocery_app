@@ -24,7 +24,7 @@ The application offers a complete online grocery shopping solution with features
 **Seller Features:**
 
 -  Dedicated seller dashboard with authentication
--  Product management (add, edit, delete products)
+-  Product management
 -  Order management with status updates
 -  Real-time inventory tracking
 -  Image upload with Cloudinary integration
