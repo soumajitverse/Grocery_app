@@ -17,9 +17,6 @@ const Navbar = () => {
         getCartCount,
         axios,
         setCartItems,
-        accVerified,
-        setShowVerifyEmail,
-        verifyAccEmail
     } = useAppContext()
 
     // function to logout
@@ -90,13 +87,6 @@ const Navbar = () => {
                             <img className='w-10' src={assets.profile_icon} alt="profile" />
 
                             <ul className='hidden group-hover:block absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm z-40'>
-                                {!accVerified && (<li
-                                    onClick={() => {
-                                        setShowVerifyEmail(true)
-                                        verifyAccEmail()
-                                    }}
-                                    className='p-1.5 pl-3 
-                        hover:bg-primary/10 cursor-pointer'>Verify Email</li>)}
                                 <li
                                     onClick={() => { navigate('my-orders') }}
                                     className='p-1.5 pl-3 
@@ -133,13 +123,6 @@ const Navbar = () => {
                 {/* if user is logged in then only it will show my orders otherwise not */}
                 {user && <NavLink to='/my-orders' onClick={() => setOpen(false)}>My Orders</NavLink>}
 
-                {user && !accVerified && (<div
-                    onClick={() => {
-                        setShowVerifyEmail(true)
-                        verifyAccEmail()
-                        setOpen(false)
-                    }}
-                >Verify Email</div>)}
                 <NavLink to='/contact' onClick={() => setOpen(false)}>Contact</NavLink>
 
                 {/* login and logout*/}

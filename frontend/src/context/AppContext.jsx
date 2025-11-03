@@ -52,6 +52,7 @@ export const AppContextProvider = ({ children }) => {
             if (data.success) {
                 setUser(data.user)
                 setAccVerified(data.user.isAccountVerified)
+                setShowVerifyEmail(!data.user.isAccountVerified)
                 setCartItems(data.user.cartItems)
             }
         } catch (error) {
@@ -197,7 +198,7 @@ export const AppContextProvider = ({ children }) => {
         verifyAccEmail,
         showResetNewPass,
         setShowResetNewPass,
-        resetPassEmail, 
+        resetPassEmail,
         setResetPassEmail
         // resetPass
     }

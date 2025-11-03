@@ -5,13 +5,15 @@ import toast from 'react-hot-toast';
 import { assets } from '../assets/assets.js';
 const Login = () => {
 
-    const { 
+    const {
         navigate,
         setUser,
         setShowUserLogin,
         axios,
         fetchUserStatus,
-        setShowResetNewPass
+        setShowResetNewPass,
+        setShowVerifyEmail,
+        verifyAccEmail
     } = useAppContext()
 
     const [state, setState] = useState("login");
@@ -37,6 +39,12 @@ const Login = () => {
                 navigate('/')
                 setUser(data.user)
                 setShowUserLogin(false)
+            }
+            if (state === 'register') {
+                setTimeout(() => {
+                    setShowVerifyEmail(true)
+                    verifyAccEmail()
+                }, 4000)
             }
         } catch (error) {
             toast.error(error.response.data.message)
