@@ -31,7 +31,7 @@ app.use(cors({
 }))
 
 
-app.get('/', (req, res) => res.send("Api is Working"))
+app.get('/', (req, res) => res.status(200).send("Api is Working"))
 app.use('/api/user', userRouter)
 app.use('/api/seller', sellerRouter)
 app.use('/api/product', productRouter)
