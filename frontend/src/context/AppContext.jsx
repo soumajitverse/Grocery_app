@@ -73,6 +73,7 @@ export const AppContextProvider = ({ children }) => {
         }
     }
 
+    setInterval(fetchProducts, 10 * 60 * 1000) // sent req to server every 10 min
 
     // add product to cart
     const addToCart = (itemId) => {
