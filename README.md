@@ -602,8 +602,8 @@ All emails are sent from the configured `SENDGRID_FROM_EMAIL` with proper brandi
 
 The application is deployed using:
 
-- **Frontend:** Vercel - https://grocery-app-flax-five.vercel.app/
-- **Backend:** Render - https://baskito-app.onrender.com/
+- **Frontend:** Vercel - https://grocery-app-mu-nine.vercel.app/
+- **Backend:** Render - https://grocery-app-5ms8.onrender.com/
 - **Database:** MongoDB Atlas
 - **Image Storage:** Cloudinary
 - **Email Service:** SendGrid
@@ -615,7 +615,7 @@ The application is deployed using:
 
 - Build Command: `npm install`
 - Start Command: `npm start` or `node server.js`
-- **Important:** Configure Stripe webhook URL: `https://baskito-app.onrender.com/stripe`
+- **Important:** Configure Stripe webhook URL: `https://grocery-app-5ms8.onrender.com/stripe`
 
 **For Vercel (Frontend):**
 
@@ -645,14 +645,14 @@ OTP_EXPIRATION_TIME=10
 
 ```
 VITE_CURRENCY=₹
-VITE_BACKEND_URL=https://baskito-app.onrender.com
-VITE_FRONTEND_URL=https://grocery-app-flax-five.vercel.app
+VITE_BACKEND_URL=https://grocery-app-5ms8.onrender.com
+VITE_FRONTEND_URL=https://grocery-app-mu-nine.vercel.app
 ```
 
 ### Stripe Webhook Configuration
 
 1. Go to Stripe Dashboard → Webhooks
-2. Add endpoint: `https://baskito-app.onrender.com/stripe`
+2. Add endpoint: `https://grocery-app-5ms8.onrender.com/stripe`
 3. Select events: `payment_intent.succeeded`, `payment_intent.payment_failed`
 4. Copy webhook secret to `STRIPE_WEBHOOK_SECRET` environment variable
 5. Keep this secret secure and never commit to version control
