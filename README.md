@@ -70,7 +70,7 @@ The application offers a complete online grocery shopping solution with features
 ## 🚀 Live Demo
 
 - **Frontend:** https://baskito.vercel.app/
-- **Backend API:** https://baskito-app.onrender.com/
+- **Backend API:** https://baskito-backend.onrender.com/
 
 ## 📁 Project Structure
 
@@ -603,7 +603,7 @@ All emails are sent from the configured `SENDGRID_FROM_EMAIL` with proper brandi
 The application is deployed using:
 
 - **Frontend:** Vercel - https://baskito.vercel.app/
-- **Backend:** Render - https://grocery-app-5ms8.onrender.com/
+- **Backend:** Render - https://baskito-backend.onrender.com/
 - **Database:** MongoDB Atlas
 - **Image Storage:** Cloudinary
 - **Email Service:** SendGrid
@@ -615,7 +615,7 @@ The application is deployed using:
 
 - Build Command: `npm install`
 - Start Command: `npm start` or `node server.js`
-- **Important:** Configure Stripe webhook URL: `https://grocery-app-5ms8.onrender.com/stripe`
+- **Important:** Configure Stripe webhook URL: `https://baskito-backend.onrender.com/stripe`
 
 **For Vercel (Frontend):**
 
@@ -645,7 +645,7 @@ OTP_EXPIRATION_TIME=10
 
 ```
 VITE_CURRENCY=₹
-VITE_BACKEND_URL=https://grocery-app-5ms8.onrender.com
+VITE_BACKEND_URL=https://baskito-backend.onrender.com
 VITE_FRONTEND_URL=https://grocery-app-mu-nine.vercel.app
 ```
 
