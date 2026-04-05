@@ -12,7 +12,6 @@ export const updateCart = async (req, res) => {
             message: "Cart updated"
         })
     } catch (error) {
-        console.log("hey mother fucker I am here")
         return res.status(500).json({
             success: false,
             message: error.message
