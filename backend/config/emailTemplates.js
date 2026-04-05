@@ -100,7 +100,7 @@ export const WELCOME_TEMPLATE = (name, email) => {
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                       <td align="center" style="padding:30px 0;">
-                        <a href="https://grocery-app-flax-five.vercel.app" 
+                        <a href="https://baskito.vercel.app" 
                            class="mobile-button"
                            style="background:linear-gradient(135deg, #e53935 0%, #c62828 100%); color:#ffffff; text-decoration:none; padding:16px 48px; border-radius:50px; font-weight:700; font-size:16px; display:inline-block; box-shadow:0 6px 20px rgba(229, 57, 53, 0.3); letter-spacing:0.5px;">
                           🛍️ Start Shopping Now
@@ -154,7 +154,7 @@ export const WELCOME_TEMPLATE = (name, email) => {
                   </p>
                   <p style="margin:0; font-size:12px; color:#95a5a6;">
                     © ${year} BASKITO by soumajitverse. All rights reserved.<br>
-                    <a href="https://grocery-app-flax-five.vercel.app" style="color:#e53935; text-decoration:none; font-weight:600;">baskito.vercel.app</a>
+                    <a href="https://baskito.vercel.app" style="color:#e53935; text-decoration:none; font-weight:600;">baskito.vercel.app</a>
                   </p>
                   <div style="margin-top:16px;">
                     <span style="font-size:11px; color:#bdc3c7; letter-spacing:0.5px;">Made with ❤️ for fresh grocery lovers</span>
@@ -772,7 +772,7 @@ export const ORDER_CONFIRMATION_TEMPLATE = (name, orderId, total, items, payment
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center" style="padding:30px 0;">
-                                        <a href="https://grocery-app-flax-five.vercel.app/my-orders"
+                                        <a href="https://baskito.vercel.app/my-orders"
                                             style="background:linear-gradient(135deg, #e53935 0%, #c62828 100%); color:#ffffff; text-decoration:none; padding:16px 40px; border-radius:50px; font-weight:700; font-size:15px; display:inline-block; box-shadow:0 6px 20px rgba(229, 57, 53, 0.3); letter-spacing:0.5px;">
                                             📱 Track Your Order
                                         </a>
@@ -805,7 +805,7 @@ export const ORDER_CONFIRMATION_TEMPLATE = (name, orderId, total, items, payment
                             </p>
                             <p style="margin:0; font-size:12px; color:#95a5a6;">
                                 © ${year} BASKITO by soumajitverse. All rights reserved.<br>
-                                <a href="https://grocery-app-flax-five.vercel.app"
+                                <a href="https://baskito.vercel.app"
                                     style="color:#e53935; text-decoration:none; font-weight:600;">baskito.vercel.app</a>
                             </p>
                             <div style="margin-top:16px;">
